@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -8,19 +9,19 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const salt = bcrypt.genSaltSync(10);
 const jwt = require("jsonwebtoken");
-const secret = "adeioosi2392n#n1i1n@8n8";
+const secret = process.env.SECRET_KEY;
+const port = process.env.PORT || 4000;
 const fns = require("date-fns");
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
 mongoose.set("strictQuery", true);
 mongoose.connect(
-  "mongodb://shivi:rGGtoFwOGmW7fFwY@ac-p3jmnn1-shard-00-00.oyc2dek.mongodb.net:27017,ac-p3jmnn1-shard-00-01.oyc2dek.mongodb.net:27017,ac-p3jmnn1-shard-00-02.oyc2dek.mongodb.net:27017/?ssl=true&replicaSet=atlas-144nzt-shard-0&authSource=admin&retryWrites=true&w=majority"
+  process.env.CONNECTION_STRING
 );
 // , () => {
 //   console.log("Connected to MongoDB");
 // });
-
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -200,4 +201,4 @@ app.get("/getDues", async (req, res) => {
   });
 });
 
-app.listen(4000);
+app.listen(port);

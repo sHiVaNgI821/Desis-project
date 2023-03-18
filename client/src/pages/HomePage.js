@@ -41,7 +41,6 @@ export default function HomePage() {
   ];
 
   useEffect(() => {
-    userInfo && 
     Promise.all([
       fetch("http://localhost:4000/getTransactions", {
         credentials: "include",
@@ -69,7 +68,6 @@ export default function HomePage() {
 
 
   useEffect(() => {
-    userInfo && 
     fetch(`http://localhost:4000/getMonthly/${category}`, {
       credentials: "include",
     })
