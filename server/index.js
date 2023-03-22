@@ -24,8 +24,8 @@ mongoose.connect(
 // });
 const auth = require("./controllers/auth.js");
 
-// app.post("/login", auth.login);
-// app.post("/logout", logout);
+app.post("/login", auth.login);
+app.post("/logout", logout);
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
