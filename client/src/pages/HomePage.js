@@ -1,9 +1,8 @@
 import { useEffect, useContext, useState } from "react";
 import DetailsCard from "../components/DetailsCard";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { PieChart } from "react-minimal-pie-chart";
-import { Histogram } from "react-chart-histogram";
 import { differenceInCalendarDays } from "date-fns";
 export default function HomePage() {
   const options = [
@@ -11,7 +10,7 @@ export default function HomePage() {
     "Food",
     "Medical",
     "Educational",
-    "Peer Lending",
+    "Peer-Lending",
     "Miscellaneous",
     "Total",
   ];
@@ -42,10 +41,10 @@ export default function HomePage() {
 
   useEffect(() => {
     Promise.all([
-      fetch("http://localhost:4000/getTransactions", {
+      fetch("http://localhost:4000/getCurrentExpense", {
         credentials: "include",
       }),
-      fetch("http://localhost:4000/getCurrentTrend", {
+      fetch("http://localhost:4000/getCurrentTr", {
         credentials: "include",
       }),
       fetch("http://localhost:4000/getDues", {
@@ -67,13 +66,13 @@ export default function HomePage() {
   }, []);
 
 
-  useEffect(() => {
-    fetch(`http://localhost:4000/getMonthly/${category}`, {
-      credentials: "include",
-    })
-      .then((resPreviousData) => resPreviousData.json())
-      .then((dataPrevious) => setPreviousData(dataPrevious));
-  }, [category]);
+  // useEffect(() => {
+  //   fetch(`http://localhost:4000/getMonthly/${category}`, {
+  //     credentials: "include",
+  //   })
+  //     .then((resPreviousData) => resPreviousData.json())
+  //     .then((dataPrevious) => setPreviousData(dataPrevious));
+  // }, [category]);
 
   function getAmount(amount, interest, date, dueDate) {
     const diff = differenceInCalendarDays(new Date(dueDate), new Date(date));
@@ -85,6 +84,10 @@ export default function HomePage() {
   if (userInfo) {
     return (
       <>
+                  <Link to="/addLending"> Add Lending Transaction </Link>
+                  <Link to="/addExpense"> Add Expense </Link>
+                  <Link to="/addIncome"> Add Income </Link>
+
         {userInfo ? <h1>Hello {userInfo.username}</h1> : <></>}
         <h2>Upcoming payments are as follows:</h2>
         <ul>

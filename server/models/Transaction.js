@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 const {Schema, model} = mongoose;
 
-const TransactionSchema = new Schema({
+const baseOption = {
+    discriminatorKey : "transactions",
+    collection : "transactions",
+    timestamps: true,
+}
+const BaseTransactionSchema = new Schema({
     amount:{type: Number},
-    to:{type: String},
-    from:{type: String},
-    interest:{type:Number},
     date:{type:Date},
-    category:{type: String},
-    dueDate: {type:Date},
-},{
-    timestamps:true,
-});
+}, baseOption
+);
 
-const TransactionModel = model('Transaction', TransactionSchema);
+const BaseTransaction = model('BaseTransaction', BaseTransactionSchema);
 
-module.exports = TransactionModel;
+
+module.exports = BaseTransaction;

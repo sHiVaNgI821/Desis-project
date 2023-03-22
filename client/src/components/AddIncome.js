@@ -1,29 +1,24 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-export default function AddTransaction() {
+export default function AddIncome() {
   const options = [
-    "Food",
-    "Medical",
-    "Educational",
-    "Travel",
-    "Peer Lending",
-    "Miscellaneous",
+    "Stipend",
+    "Scholarship",
+    "Other",
   ];
 
   const [amount, setAmount] = useState();
-  const [to, setTo] = useState();
   const [from, setFrom] = useState();
-  const [interest, setInterest] = useState();
   const [date, setDate] = useState();
   const [category, setCategory] = useState(options[0]);
   const [redirect, setRedirect] = useState(false);
-  const [dueDate, setDueDate] = useState();
 
   async function submit(ev) {
     ev.preventDefault();
-    const resp = await fetch("http://localhost:4000/addTransaction", {
+    const resp = await fetch("http://localhost:4000/addIncome", {
       method: "POST",
-      body: JSON.stringify({ amount, to, from, interest, date, category, dueDate }),
+      credentials:"include",
+      body: JSON.stringify({ amount, from, date, category }),
       headers: { "Content-Type": "application/json" },
     });
     if (resp.ok) {
@@ -31,11 +26,11 @@ export default function AddTransaction() {
     }
   }
   if (redirect) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/homepage"} />;
   }
   return (
     <form onSubmit={submit}>
-      <h2>Add a transaction</h2>
+      <h2>Add an income </h2>
       <input
         type="number"
         placeholder={"Amount"}
@@ -43,26 +38,12 @@ export default function AddTransaction() {
         onChange={(e) => setAmount(e.target.value)}
       />
 
-      <input
-        type="text"
-        placeholder={"To"}
-        value={to}
-        onChange={(e) => setTo(e.target.value)}
-      />
 
       <input
         type="text"
         placeholder={"From"}
         value={from}
         onChange={(e) => setFrom(e.target.value)}
-      />
-
-      <input
-        type="number"
-        step="0.01"
-        placeholder={"Interest Rate"}
-        value={interest}
-        onChange={(e) => setInterest(e.target.value)}
       />
 
       <input
@@ -81,15 +62,8 @@ export default function AddTransaction() {
         ))}
       </select>
 
-      <input
-        type="date"
-        placeholder={"Due Date for Peer Loan"}
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-      />
-
       <button type="submit" style={{ marginTop: "6px" }}>
-        Add transaction
+        Add Transaction
       </button>
     </form>
   );
