@@ -22,10 +22,10 @@ mongoose.connect(
 // , () => {
 //   console.log("Connected to MongoDB");
 // });
-const auth = require("controllers/auth");
+const auth = require("./controllers/auth.js");
 
-app.post("/login", auth.login);
-app.post("/logout", auth.logout);
+// app.post("/login", auth.login);
+// app.post("/logout", logout);
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
