@@ -1,0 +1,35 @@
+.card{
+  padding-top: 10px;
+  position: absolute;
+  left: 680px;
+  /* overflow-y: scroll; */
+}
+.transaction-history-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  background-color: rgb(211, 156, 224);
+  width: 500px;
+  font-family:'Climate Crisis', cursive;
+}
+
+.transaction-history-card__date {
+  font-weight: bold;
+}
+
+.transaction-history-card__amount {
+  font-weight: bold;
+}
+
+.transaction-history {
+  /* border: 1px solid black; */
+
+  padding: 20px;
+}
+
+.transaction-history h2 {
+  margin-bottom: 10px;
+}

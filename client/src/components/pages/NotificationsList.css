@@ -1,0 +1,79 @@
+.notifications-card {
+  position: absolute;
+  left: 680px;
+  background-color: rgb(196, 143, 201);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  margin: 20px;
+  width: 500px;
+  height: 670px;
+  overflow-y: scroll;
+  top: 50px;
+}
+
+.notifications-card-header {
+  background-color: rgb(196, 143, 201);
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-family: 'Chilanka', cursive;
+  text-align: center;
+}
+
+.notifications-card-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.notifications-card-body {
+  padding: 10px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.activity-item.upcoming {
+  color: #0a0005;
+}
+
+.activity-item.done {
+  color: #010c07;
+}
+
+.activity-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #120101;
+}
+
+.activity-details {
+  flex-grow: 1;
+}
+
+.activity-date {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.activity-message {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.activity-description {
+  color: #120101;
+}
+.icons2{
+  color: #120101;
+}

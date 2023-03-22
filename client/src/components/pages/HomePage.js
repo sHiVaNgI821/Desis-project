@@ -1,10 +1,13 @@
 import { useEffect, useContext, useState } from "react";
-import DetailsCard from "../components/DetailsCard";
+import DetailsCard from '../Layout/DetailsCard'
 import { Navigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { PieChart } from "react-minimal-pie-chart";
 import { Histogram } from "react-chart-histogram";
 import { differenceInCalendarDays } from "date-fns";
+import './HomePage.css';
+
+
 export default function HomePage() {
   const options = [
     "Travel",
@@ -84,7 +87,7 @@ export default function HomePage() {
 
   if (userInfo) {
     return (
-      <>
+      <div className="homepage">
         {userInfo ? <h1>Hello {userInfo.username}</h1> : <></>}
         <h2>Upcoming payments are as follows:</h2>
         <ul>
@@ -161,7 +164,7 @@ export default function HomePage() {
               </li>
             ))}
         </ul>
-      </>
+      </div>
     );
   }
 
