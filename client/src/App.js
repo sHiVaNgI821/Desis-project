@@ -22,20 +22,24 @@ import Settings from "./components/pages/Settings";
 import ExpensesPage from "./components/pages/ExpensesPage";
 import SavingsCalculator from "./components/pages/SavingsCalculator"
 import Sap from "./components/Dashboard/Sap"
+import LeftNav from "./components/Layout/LeftNav";
 
 function App() {
   return (
     <UserContextProvider>
       <Routes>
         <Route path = "/intro" element = {<IntroPage/>}></Route>
+        <Route index element = {<IntroPage/>}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
+
         <Route path="/" element={<Layout />}>
-          <Route path= "/homepage" element={<Sap />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/register" element={<RegisterPage />}></Route>
-          <Route path ="/addLending" element = {<AddLending />}></Route> 
+          <Route index element={<Sap />}></Route>
+          <Route path = "/homepage" element={<Sap />}></Route>
+          {/* <Route path ="/addLending" element = {<AddLending />}></Route> 
           <Route path ="/addExpense" element = {<AddExpense/>}></Route>
-          <Route path = "/addIncome" element = {<AddIncome />}></Route>
-          {/* <Route path ="/create" element = {<ExpensesPage/>}></Route>    */}
+          <Route path = "/addIncome" element = {<AddIncome />}></Route> */}
+          <Route path ="/create" element = {<ExpensesPage/>}></Route>   
           
           <Route path = "/peer" element = {<Peer/>}></Route>
           <Route path = "/transaction" element = {<Transaction/>}></Route>

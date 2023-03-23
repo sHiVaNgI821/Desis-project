@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 //import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -13,6 +13,49 @@ import TransactionHistoryCard from './TransactionHistoryCard';
 import Details from './Details';
 
 function Sap(){
+    const months = [
+        "",
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const [balanceData, setBalanceData] = useState();
+      const [pieData, setPieData] = useState();
+      
+      useEffect(() => {
+        Promise.all([
+          fetch("http://localhost:4000/getBalance", {
+            credentials: "include",
+          }),
+          fetch("http://localhost:4000/getCurrentExpense", {
+            credentials: "include",
+          }),
+        //   fetch("http://localhost:4000/getDues", {
+        //     credentials: "include",
+        //   }),
+        ])
+          .then(([resBalance, resPieData]) =>
+            Promise.all([
+              resBalance.json(),
+              resPieData.json(),
+            //   resDues.json(),
+            ])
+          )
+          .then(([dataBalance, dataPie]) => {
+            setBalanceData(dataBalance);
+            setPieData(dataPie);
+            // setDues(dataDues);
+          });
+      }, []);
     return(
         <div classname="container">
             <Container>
@@ -22,7 +65,7 @@ function Sap(){
                         <Card style={{ width: '18rem', height: '5rem'}}>
                         <span className="square bg-primary rounded-9"></span>
                             <Card.Body>
-                            <Card.Title style={{ width: '15rem', height: '0.5rem'}}>Balance: <FontAwesomeIcon icon={faMoneyBill} />  Rs. 5000</Card.Title>
+                            <Card.Title style={{ width: '15rem', height: '0.5rem'}}>Balance: <FontAwesomeIcon icon={faMoneyBill} />  {balanceData?.balance}</Card.Title>
                             <Card.Text>
                                 
                             </Card.Text>
@@ -32,7 +75,7 @@ function Sap(){
                     <Col > 
                         <Card style={{ width: '18rem', height: '5rem' }}>
                             <Card.Body>
-                            <Card.Title style={{ width: '15rem', height: '0.5rem', fontSize:'20px'}}>Credit: <FontAwesomeIcon icon={faCreditCard} />  9</Card.Title>
+                            <Card.Title style={{ width: '15rem', height: '0.5rem', fontSize:'20px'}}>Credit: <FontAwesomeIcon icon={faCreditCard} />  {balanceData?.totalCred}</Card.Title>
                             <Card.Text>
                                 
                             </Card.Text>
@@ -42,7 +85,7 @@ function Sap(){
                     <Col >
                         <Card style={{ width: '18rem', height: '5rem' }}>
                             <Card.Body>
-                            <Card.Title style={{ width: '15rem', height: '0.5rem'}}>Debit: <FontAwesomeIcon icon={faMoneyBillTransfer} />  8</Card.Title>
+                            <Card.Title style={{ width: '15rem', height: '0.5rem'}}>Debit: <FontAwesomeIcon icon={faMoneyBillTransfer} /> {balanceData?.totalDebit} </Card.Title>
                             <Card.Text>
                                 
                             </Card.Text>
@@ -76,7 +119,7 @@ function Sap(){
                                     <p>Balance for this month: Rs. 1500</p>
 
                                 </Card.Text>    */}
-                                <Details/>
+                                <Details balance = {balanceData}/>
                                 
                             </Card.Body>
                         </Card>
@@ -88,7 +131,7 @@ function Sap(){
                         <Card style={{ width: '41rem', height: '18rem', position:'relative', top:'400px'}}>
                             <Card.Body>
                             <Card.Title>Sectors</Card.Title>
-                            <Pipi/>
+                            <Pipi  />
                             </Card.Body>
                         </Card>
                     </Col>

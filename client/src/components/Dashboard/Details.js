@@ -2,7 +2,7 @@ import React from 'react';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function Details() {
+function Details({balance}) {
   return (
     <ListGroup as="ol" numbered>
       <ListGroup.Item
@@ -14,7 +14,7 @@ function Details() {
           </div>
         </div>
         <Badge bg="primary">
-        Rs. 6000
+        {balance?.balance}
         </Badge>
       </ListGroup.Item>
       <ListGroup.Item
@@ -25,7 +25,7 @@ function Details() {
           <div className="fw-bold">Current Month Limit  :</div>
         </div>
         <Badge bg="primary" >
-          Rs. 3000
+          {balance?.limit}
         </Badge>
       </ListGroup.Item>
       <ListGroup.Item
@@ -45,11 +45,11 @@ function Details() {
         as="li"
         className="d-flex justify-content-between align-items-start">
         <div className="ms-2 me-auto">
-          <div className="fw-bold">Balance for this month  :
+          <div className="fw-bold">Total balance for this month  :
             </div>
         </div>
         <Badge style={{ backgroundColor: 'purple' }}>
-          Rs. 1500
+          {balance?.monthExpense}
         </Badge>
       </ListGroup.Item>
     </ListGroup>

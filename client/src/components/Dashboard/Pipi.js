@@ -108,70 +108,116 @@
 
 // export default Pipi
 
-import React from "react";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-class PieRechartComponent extends React.Component {
-   COLORS = ['#9D4EDD', '#7B2CBF', '#3C096C', 'purple'];
-   pieData = [
-      {
-         name: "Food",
-         value: 550
-      },
-      {
-         name: "Shopping",
-         value: 1100
-      },
-      {
-         name: "Medical",
-         value: 200
-      },
-      {
-         name: "Others",
-         value: 500
-      }
+// import React, {useEffect, useState} from "react";
+// import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+// class PieRechartComponent extends React.Component {
+//    COLORS = ['#9D4EDD', '#7B2CBF', '#3C096C', 'purple', "#6a74b7", "#8a7c93"];
+//    // pieData = [
+//    //    {
+//    //       name: "Food",
+//    //       value: 550
+//    //    },
+//    //    {
+//    //       name: "Shopping",
+//    //       value: 1100
+//    //    },
+//    //    {
+//    //       name: "Medical",
+//    //       value: 200
+//    //    },
+//    //    {
+//    //       name: "Others",
+//    //       value: 500
+//    //    }
       
-   ];
-   CustomTooltip = ({ active, payload, label }) => {
-      if (active) {
-         return (
-         <div
-            className="custom-tooltip"
-            style={{
-               backgroundColor: "#ffff",
-               padding: "5px",
-               border: "1px solid #cccc"
-            }}
-         >
-            <label>{`${payload[0].name} : Rs. ${payload[0].value}`}</label>
-         </div>
-      );
-   }
-   return null;
-};
-render() {
+//    // ];
+//    CustomTooltip = ({ active, payload, label }) => {
+//       if (active) {
+//          return (
+//          <div
+//             className="custom-tooltip"
+//             style={{
+//                backgroundColor: "#ffff",
+//                padding: "5px",
+//                border: "1px solid #cccc"
+//             }}
+//          >
+//             <label>{`${payload[0].name} : Rs. ${payload[0].value}`}</label>
+//          </div>
+//       );
+//    }
+//    return null;
+// };
+// render() {
+//    const [pieData, setPieData] = useState();
+//    useEffect(()=>{
+//       fetch("http://localhost:4000/getCurrentExpense", {
+//          credentials: "include",
+//        }).then((resPieData)=>resPieData.json()).then((dataPie)=>setPieData(dataPie))
+//    }, [])
+//    return (
+//       <PieChart width={600} height={190}>
+//       <Pie
+//          data={pieData}
+//          color="#000000"
+//          dataKey="_id"
+//          nameKey="amount"
+//          cx="30%"
+//          cy="50%"
+//          outerRadius={80}
+//          fill="#8884d8"
+//       >
+//          {pieData.map((entry, index) => (
+//             <Cell
+//                key={`cell-${index}`}
+//                fill={this.COLORS[index % this.COLORS.length]}
+//             />
+//          ))}
+//       </Pie>
+//       <Tooltip content={<this.CustomTooltip />} />
+//       <Legend layout="vertical" align="right"/>
+//       </PieChart>
+//       );
+//    }
+// }
+// export default PieRechartComponent;
+
+import React, {useEffect, useState, memo} from "react";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { CustomTooltip } from "./CustomToolTip";
+
+const PieRechartComponent = ()=>{
+   const COLORS = ['#9D4EDD', '#7B2CBF', '#3C096C', 'purple', "#6a74b7", "#8a7c93"];
+
+      const [pieData, setPieData] = useState();
+   useEffect(()=>{
+      fetch("http://localhost:4000/getCurrentExpense", {
+         credentials: "include",
+       }).then((resPieData)=>resPieData.json()).then((dataPie)=>setPieData(dataPie));
+       console.log(pieData);
+   }, [])
    return (
       <PieChart width={600} height={190}>
       <Pie
-         data={this.pieData}
+         data={pieData}
          color="#000000"
-         dataKey="value"
-         nameKey="name"
+         dataKey="_id"
+         nameKey="amount"
          cx="30%"
          cy="50%"
          outerRadius={80}
          fill="#8884d8"
       >
-         {this.pieData.map((entry, index) => (
+         {pieData?.map((entry, index) => (
             <Cell
                key={`cell-${index}`}
-               fill={this.COLORS[index % this.COLORS.length]}
+               fill={COLORS[index % COLORS.length]}
             />
          ))}
       </Pie>
-      <Tooltip content={<this.CustomTooltip />} />
+      <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
       <Legend layout="vertical" align="right"/>
       </PieChart>
       );
-   }
 }
-export default PieRechartComponent;
+export default memo(PieRechartComponent);

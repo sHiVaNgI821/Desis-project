@@ -1,5 +1,10 @@
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const secret = process.env.SECRET_KEY;
+
 module.exports = {
-	login: async(res, req) => {
+	login: async(req, res) => {
 		const { username, password } = req.body;
 		try {
 			const UserDoc = await User.findOne({ username });
@@ -13,7 +18,6 @@ module.exports = {
 				});
 			});
 			} else {
-			alert("Invalid");
 			res.json("Invalid Credentials");
 			}
 		} catch (e) {
@@ -22,7 +26,7 @@ module.exports = {
 		}
 	},
 
-	login: logout =  async(req, res) => {
+	logout: async(req, res) => {
 		res.cookie("token", "").json("ok");
 	}
 }
