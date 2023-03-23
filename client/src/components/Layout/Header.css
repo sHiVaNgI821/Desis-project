@@ -1,0 +1,51 @@
+.title
+{
+    font-family: 'Climate Crisis', cursive;
+    color: #7B2CBF;
+    font-size: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+    text-decoration: none;
+}
+.items
+{
+    font-family: 'Climate Crisis', cursive;
+    font-family: 'Raleway', sans-serif;
+    margin: 15px;
+    font-size: 18px;
+}
+.login-word
+{
+    color: #9D4EDD;
+}
+.signUp-word
+{
+    color: white;
+}
+.icons
+{
+    color: #9D4EDD;
+    font-size: 18px;
+}
+.logo
+{
+    height: 100px;
+}
+.signUp
+{
+    background-color: #9D4EDD;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    padding: 10px;
+}
+.login
+{
+    text-decoration: none;
+    padding: 10px;
+}
+.nav2
+{
+    position: relative;
+    left: 900px;
+}

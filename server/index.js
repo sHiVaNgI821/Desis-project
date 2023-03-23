@@ -23,31 +23,10 @@ mongoose.connect(process.env.CONNECTION_STRING);
 // , () => {
 //   console.log("Connected to MongoDB");
 // });
-app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const UserDoc = await User.findOne({ username });
-    const passOk = bcrypt.compareSync(password, UserDoc.password);
-    if (passOk) {
-      jwt.sign({ username, id: UserDoc._id }, secret, {}, (err, token) => {
-        if (err) throw err;
-        res.cookie("token", token).json({
-          id: UserDoc._id,
-          username,
-        });
-      });
-    } else {
-      alert("Invalid");
-      res.json("Invalid Credentials");
-    }
-  } catch (e) {
-    console.log(e);
-    res.status(404).json(e);
-  }
-});
-app.post("/logout", (req, res) => {
-  res.cookie("token", "").json("ok");
-});
+const auth = require("./controllers/auth.js");
+
+app.post("/login", auth.login);
+app.post("/logout", logout);
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
