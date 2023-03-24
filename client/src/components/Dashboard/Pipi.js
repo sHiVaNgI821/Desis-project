@@ -188,14 +188,14 @@ import { CustomTooltip } from "./CustomToolTip";
 
 const PieRechartComponent = ({pieData})=>{
    const COLORS = ['#9D4EDD', '#7B2CBF', '#3C096C', 'purple', "#6a74b7", "#8a7c93"];
-
+   console.log(1, pieData)
    return (
       <PieChart width={600} height={190}>
       <Pie
          data={pieData}
          color="#000000"
-         valueKey={pieData?.amount}
-         nameKey={pieData?._id}
+         valueKey="amount"
+         nameKey="_id"
          cx="30%"
          cy="50%"
          outerRadius={80}

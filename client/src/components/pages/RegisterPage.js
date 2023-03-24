@@ -2,7 +2,7 @@ import { useState } from "react";
 import './RegisterPage.css'
 import RegisterImage1 from '../../images/RegisterImage1.svg'
 import logo from '../../images/Logo.svg'
-import { Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");
@@ -20,6 +20,7 @@ export default function RegisterPage() {
     "PhD",
   ];
   const [year, setYear] = useState(years[0]);
+  const [redirect, setRedirect] = useState(false);
 
   async function register(ev) {
     ev.preventDefault();
@@ -30,9 +31,13 @@ export default function RegisterPage() {
     });
     if (response.status === 200) {
       alert("Registration successful! Please login");
+      setRedirect(true);
     } else {
       alert("Registration failed! Try again");
     }
+  }
+  if(redirect){
+    return <Navigate to= {"/homepage"} replace={true} />
   }
   return (
     <div className="total">

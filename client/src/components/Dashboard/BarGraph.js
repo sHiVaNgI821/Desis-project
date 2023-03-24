@@ -64,9 +64,9 @@ function BarGraph({data}) {
   return (
     <div>
       <BarChart width={600} height={600} data={data}>
-        <Bar dataKey={data?.amount} fill="green" />
+        <Bar dataKey="amount" fill="green" />
         <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey= {months[data?._id]} />
+        <XAxis dataKey= "_id" />
         <YAxis />
         <Tooltip />
       </BarChart>
