@@ -177,18 +177,13 @@ module.exports = {
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
 			const user = await User.findOne({ username: info.username });
-			const history = await expenseTransaction.aggregate([
-				{
-					$match: {
-						from: user._id,
-					},
-				},
-				{
-					$sort: {
-						date: -1,
-					},
-				},
-			]);
+			//const 
+			const historyExpense = await expenseTransaction.find({from : user._id});
+			const historyIncome = await incomeTransaction.find({to: user._id});
+			const history = historyExpense.concat(historyIncome);
+			history.sort(function(a,b){
+				return new Date(b.date) - new Date(a.date);
+			  });
 			res.json(history);
 		});
 	},
