@@ -1,79 +1,11 @@
-/* App container */
-.App {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-  
-  /* Option selector */
-  .option-selector {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .option-selector label {
-    margin-right: 20px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  /* Cards */
-  .card-container {
-    display: flex;
-    justify-content: center;
-
-  }
-  
-  .label {
-    width: 450px;
-    height: 630px;
-    margin: 0 20px;
-    padding: 20px;
-    background-color:   rgb(196, 143, 201);
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  }
-  
-  .label h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-  }
-  
-  .label form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .label label {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .label input {
-    padding: 5px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: none;
-  }  
-  .two-col {
-    overflow: hidden;/* Makes this div contain its floats */
+.peer
+{
+  position: absolute;
+  top: 20px;
+  left: 400px;
 }
-
-.two-col .col1,
-.two-col .col2 {
-    width: 49%;
-}
-
-.two-col .col1 {
-    float: left;
-}
-
-.two-col .col2 {
-    float: right;
-}
-
-.two-col label {
-    display: block;
+*
+{
+  font-family: 'Climate Crisis', cursive;
+    font-family: 'Raleway', sans-serif;
 }

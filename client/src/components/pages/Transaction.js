@@ -73,15 +73,8 @@ function Transaction() {
 
   return (
     <div className='transaction'>      
-      <Card style={{ width: '38rem', height: '42rem'}}>
-        <span className="square bg-primary rounded-9"></span>
-        <Card.Body>
-        <Card.Title style={{ width: '15rem', height: '0.5rem', fontFamily: 'cursive', marginLeft:'150px'}}>Transaction History</Card.Title>
-        <Card.Text>
+        <h3>Transaction History</h3>
         <History transactions={transactions} />
-        </Card.Text>
-        </Card.Body>
-    </Card>
     </div>
     
   );

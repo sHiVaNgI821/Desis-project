@@ -28,36 +28,39 @@ const SavingsCalculator = () => {
 
   return (
     <div className="savings-calculator">
-      <Card style={{ width: '30rem', height: '43rem'}}>
+      <div style={{ width: '30rem', height: '43rem'}}>
         <span className="square bg-primary rounded-9"></span>
-          <Card.Body>
-          <Card.Title style={{ width: '25rem', height: '0.5rem', fontSize:'26px'}}><FontAwesomeIcon icon={faCalculator} /> Savings Calculator</Card.Title>
-          <Card.Text style={{padding:'100px', fontSize:'18px'}}>
-          <label style={{position:'relative', bottom:'20px', fontFamily:'cursive'}}>
-            Target Amount:
-            <input type="range" min="0" max="100000" step="1000" value={targetAmount} onChange={handleTargetAmountChange} />
-            {targetAmount}
-          </label>
-          <label style={{position:'relative', bottom:'20px', fontFamily:'cursive'}}>
-            Time (years):
-            <input type="range" min="0" max="10" step="1" value={time} onChange={handleTimeChange} />
-            {time}
-          </label>
-          <label style={{position:'relative', bottom:'20px', fontFamily:'cursive'}}>
-            Interest Rate (%):
-            <input type="range" min="0" max="30" step="0.25" value={interestRate} onChange={handleInterestRateChange} />
-            {interestRate}
-          </label>
-          <label style={{position:'relative', bottom:'20px', fontFamily:'cursive'}}>
-            Monthly Saving:
-            <input type="range" min="0" max="10000" step="10" value={monthlySaving} onChange={handleMonthlySavingChange} />
-            {monthlySaving}
-          </label>
-          <button type="submit" style={{backgroundColor:'purple', fontWeight:'bold', color:'white', position:'relative', top:'30px', borderRadius:'5px'}}>Calculate</button>    
-           <label ></label>
-           </Card.Text>
-          </Card.Body>
-        </Card>
+            <h2><FontAwesomeIcon icon={faCalculator} /> Savings Calculator</h2>
+            <form className="form-group">
+              <div>
+                <label>Target Amount:</label>
+                <input type="range" min="0" max="100000" step="1000" value={targetAmount} onChange={handleTargetAmountChange} />
+                {targetAmount}
+              </div>
+              <div>
+                <label>
+                  Time (years):
+                </label>
+                <input type="range" min="0" max="10" step="1" value={time} onChange={handleTimeChange} />
+                {time}
+              </div>
+              <div>
+                <label>
+                  Interest Rate (%):
+                </label>
+                <input type="range" min="0" max="30" step="0.25" value={interestRate} onChange={handleInterestRateChange} />
+                  {interestRate}
+              </div>
+              <div>
+                <label>
+                  Monthly Saving:
+                </label>
+                <input type="range" min="0" max="10000" step="10" value={monthlySaving} onChange={handleMonthlySavingChange} />
+                  {monthlySaving}
+              </div>
+              <button type="submit">Calculate</button>    
+            </form>
+        </div>
       
           </div>
   );

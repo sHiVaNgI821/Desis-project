@@ -1,58 +1,25 @@
 import React from 'react';
-import Badge from 'react-bootstrap/Badge';
-import ListGroup from 'react-bootstrap/ListGroup';
 
-function Details() {
+function Details({balance}) {
   return (
-    <ListGroup as="ol" numbered>
-      <ListGroup.Item
-        variant="success"
-        as="li"
-        className="d-flex justify-content-between align-items-start">
-        <div className="ms-2 me-auto">
-          <div className="fw-bold">Total money in wallet  : 
-          </div>
+    <div>
+      <div>
+        <div className='d-flex justify-content-between'>
+          <p className='para1'>Total money in wallet</p>
+          <p className='para2'>{balance?.balance}</p>
         </div>
-        <Badge bg="primary">
-        Rs. 6000
-        </Badge>
-      </ListGroup.Item>
-      <ListGroup.Item
-        variant="primary"
-        as="li"
-        className="d-flex justify-content-between align-items-start">
-        <div className="ms-2 me-auto">
-          <div className="fw-bold">Current Month Limit  :</div>
+
+        <div className='d-flex justify-content-between'>
+          <p className='para1'>Monthly Limit</p>
+          <p className='para2'>{balance?.limit}</p>
         </div>
-        <Badge bg="primary" >
-          Rs. 3000
-        </Badge>
-      </ListGroup.Item>
-      <ListGroup.Item
-        variant="primary"
-        as="li"
-        className="d-flex justify-content-between align-items-start">
-        <div className="ms-2 me-auto">
-          <div className="fw-bold">Total used up till date  :
-            </div>
+
+        <div className='d-flex justify-content-between'>
+          <p className='para1'>Total balance for this month</p>
+          <p className='para2'>{balance?.monthExpense}</p>
         </div>
-        <Badge style={{ backgroundColor: 'purple' }}>
-          Rs. 1500
-        </Badge>
-      </ListGroup.Item>
-      <ListGroup.Item
-        variant="danger"
-        as="li"
-        className="d-flex justify-content-between align-items-start">
-        <div className="ms-2 me-auto">
-          <div className="fw-bold">Balance for this month  :
-            </div>
-        </div>
-        <Badge style={{ backgroundColor: 'purple' }}>
-          Rs. 1500
-        </Badge>
-      </ListGroup.Item>
-    </ListGroup>
+      </div>
+    </div>
     
     
   );

@@ -91,23 +91,17 @@ function ReminderScreen() {
   };
 
   return (
-    <div classname='outside'>
-         <Card style={{ width: '30rem', height: '43rem', paddingTop: '20px'}}>
-            <span className="square bg-primary rounded-9"></span>
-            <Card.Body>
-            <Card.Title style={{ width: '25rem', height: '0.5rem', fontSize:'26px'}}><FontAwesomeIcon icon={faCalendarDays} /> Reminders  </Card.Title>
-            <Card.Text style={{width: '25rem', height: '5rem', padding: '30px'}}>
+    <div className='reminder-screen'>
+         <div>
+            <h3><FontAwesomeIcon icon={faCalendarDays} /> Reminders</h3>
                 <ul className='list'>
                     {reminders.map((reminder, index) => (
                     <li key={index}>{reminder.description} - {reminder.date} at {reminder.time}</li>
                     ))}
-                    </ul>
-                    <button onClick={() => setShowPopup(true)}>Add Reminder</button>
-                    {showPopup && <ReminderPopup onSubmit={handleReminderSubmit} />}
-            </Card.Text>
-            </Card.Body>
-        </Card>
-      
+                </ul>
+                <button onClick={() => setShowPopup(true)}>Add Reminder</button>
+                {showPopup && <ReminderPopup onSubmit={handleReminderSubmit} />}
+        </div>
     </div>
   );
 }

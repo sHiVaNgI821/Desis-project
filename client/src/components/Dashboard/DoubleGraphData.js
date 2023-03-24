@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip } from 'rec
 
 function DoubleGraphData({ data }) {
   return (
-    <BarChart width={580} height={200} data={data}>
+    <BarChart width={440} height={200} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />

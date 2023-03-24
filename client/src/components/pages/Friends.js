@@ -1,6 +1,6 @@
 /* Friends.jsx */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Friend from './Friend';
 import './Friends.css';
 import Card from 'react-bootstrap/Card';
@@ -43,6 +43,17 @@ const Friends = () => {
         expenses: -1750,
       },
   ]);
+
+  const [friendData, setFriendData] = useState();
+  useEffect(() => {
+    fetch(`http://localhost:4000/getFriends`, {
+      credentials: "include",
+    })
+      .then((resFriendData) => resFriendData.json())
+      .then((friendData) => setFriendData(friendData));
+  }, []);
+
+  
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (event) => {
@@ -54,29 +65,21 @@ const Friends = () => {
 
   return (
     <div className="friends">
-      
-      <Card className='d-inline' style={{ width: '30rem', height: '41rem', paddingTop: '20px'}}>
-            <span className="square bg-primary rounded-9"></span>
-            <Card.Body>
-            <Card.Title style={{ width: '25rem', height: '0.5rem', fontSize:'26px'}}><FontAwesomeIcon className='icons2' icon={faUserGroup}style={{color:'black'}}/> Friends</Card.Title>
-            <Card.Text style={{width: '25rem', height: '5rem', padding: '30px'}}>
-            <div className="friends-search">
-                <input
-                type="text"
-                placeholder="Search friends"
-                value={searchTerm}
-                onChange={handleChange}
-                />
-            </div>
-            <div className="friends-list">
-                {filteredFriends.map((friend) => (
-                <Friend key={friend.id} friend={friend} />
+      <div>
+            <h3><FontAwesomeIcon className='icons2' icon={faUserGroup}/> Friends</h3>
+              <div className="friends-search">
+                  <input type="text" placeholder="Search friends" value={searchTerm} onChange={handleChange} />
+              </div>
+              <div className="friends-list">
+                  {friendData?.borrowed_from?.length && friendData.borrowed_from.map((friend) => (
+                <Friend friend={friend} />
                 ))}
-            </div>
-            </Card.Text>
-            </Card.Body>
-        </Card>
-      
+
+                {friendData?.lended_to?.length && friendData.lended_to.map((friend) => (
+                <Friend friend={friend} />
+                ))}
+              </div>
+        </div>
     </div>
   );
 };
