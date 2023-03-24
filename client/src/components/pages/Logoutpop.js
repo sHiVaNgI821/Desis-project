@@ -23,7 +23,11 @@ function Logoutpop() {
   }
 
   const handleConfirmLogout = () => {
-    // TODO: handle logout logic
+    fetch('http://localhost:4000/logout', {
+      credentials:'include',
+      method:'POST'
+    });
+    // setUserInfo(null);
     setShowLogoutPopup(false);
   }
 

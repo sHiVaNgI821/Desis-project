@@ -2,7 +2,7 @@ import React from 'react';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function TransactionHistoryCard() {
+function TransactionHistoryCard({history}) {
   return (
     <ListGroup style={{ width: '21rem', height: '12rem'}}>
       <ListGroup.Item

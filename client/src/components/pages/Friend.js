@@ -1,14 +1,14 @@
 /* Friend.jsx */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Friend.css';
 
 const Friend = ({ friend }) => {
   let status = '';
-  if (friend.expenses > 0) {
-    status = 'owes you Rs.' + friend.expenses;
-  } else if (friend.expenses < 0) {
-    status = 'you owe Rs.' + Math.abs(friend.expenses);
+  if (friend.amount > 0) {
+    status = 'owes you Rs.' + friend.amount;
+  } else if (friend.amount < 0) {
+    status = 'you owe Rs.' + Math.abs(friend.amount);
   } else {
     status = 'settled up';
   }
@@ -16,9 +16,9 @@ const Friend = ({ friend }) => {
   return (
     <div className="friend">
       <div className="friend-info">
-        <img src={friend.picture} alt={friend.name} />
+        {/* <img src={friend.picture} alt={friend.name} /> */}
         <div>
-          <h3>{friend.name}</h3>
+          <h3>{friend.username}</h3>
           <p className="status">{status}</p>
         </div>
       </div>

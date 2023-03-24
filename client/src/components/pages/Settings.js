@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import './Settings.css'
 import dp from '../../images/ProfilePicture.svg'
 

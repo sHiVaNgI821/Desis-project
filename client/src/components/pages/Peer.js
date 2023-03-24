@@ -33,7 +33,44 @@ function Peer() {
     }else{
       setTo(userInfo.username);
     }
+    if(selectedOption == "lend"){
+      setFrom(userInfo.username);
+    }else{
+      setTo(userInfo.username);
+    }
   };
+  async function submit(ev) {
+    ev.preventDefault();
+    console.log(to, from);
+    const resp = await fetch("http://localhost:4000/addLending", {
+      method: "POST",
+      body: JSON.stringify({ amount, to, from, interest, date, dueDate }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (resp.ok) {
+      setRedirect(true);
+    }
+  }
+  if (redirect) {
+    return <Navigate to={"/homepage"} />;
+  }
+
+  async function submit(ev) {
+    ev.preventDefault();
+    console.log(to, from);
+    const resp = await fetch("http://localhost:4000/addLending", {
+      method: "POST",
+      body: JSON.stringify({ amount, to, from, interest, date, dueDate }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (resp.ok) {
+      setRedirect(true);
+    }
+  }
+  if (redirect) {
+    return <Navigate to={"/homepage"} />;
+  }
+
 
   async function submit(ev) {
     ev.preventDefault();

@@ -10,8 +10,9 @@ import './HomePage.css';
 
 export default function HomePage() {
   const options = [
-    "Travel",
     "Food",
+    "Travel",
+    "Shopping",
     "Medical",
     "Educational",
     "Peer Lending",
