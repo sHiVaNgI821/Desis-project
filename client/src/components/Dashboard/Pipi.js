@@ -186,23 +186,16 @@ import React, {useEffect, useState, memo} from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { CustomTooltip } from "./CustomToolTip";
 
-const PieRechartComponent = ()=>{
+const PieRechartComponent = ({pieData})=>{
    const COLORS = ['#9D4EDD', '#7B2CBF', '#3C096C', 'purple', "#6a74b7", "#8a7c93"];
 
-      const [pieData, setPieData] = useState();
-   useEffect(()=>{
-      fetch("http://localhost:4000/getCurrentExpense", {
-         credentials: "include",
-       }).then((resPieData)=>resPieData.json()).then((dataPie)=>setPieData(dataPie));
-       console.log(pieData);
-   }, [])
    return (
       <PieChart width={600} height={190}>
       <Pie
          data={pieData}
          color="#000000"
-         dataKey="_id"
-         nameKey="amount"
+         valueKey={pieData?.amount}
+         nameKey={pieData?._id}
          cx="30%"
          cy="50%"
          outerRadius={80}
@@ -215,8 +208,9 @@ const PieRechartComponent = ()=>{
             />
          ))}
       </Pie>
-      <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
+      {/* <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} /> */}
       <Legend layout="vertical" align="right"/>
+      <Tooltip />
       </PieChart>
       );
 }

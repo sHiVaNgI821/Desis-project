@@ -162,11 +162,11 @@ module.exports = {
 						dueDate: {$gt : date_now, $lte: month_end}
 					},
 				},
-				// {
-				//   $sort: {
-				//     dueDate: 1,
-				//   },
-				// },
+				{
+				  $sort: {
+				    dueDate: 1,
+				  },
+				},
 			]);
 			res.json(dues);
 		});
@@ -178,8 +178,8 @@ module.exports = {
 			if (err) throw err;
 			const user = await User.findOne({ username: info.username });
 			//const 
-			const historyExpense = await expenseTransaction.find({from : user._id});
-			const historyIncome = await incomeTransaction.find({to: user._id});
+			const historyExpense = await expenseTransaction.find({from : user._id}, "from to amount date category");
+			const historyIncome = await incomeTransaction.find({to: user._id}, "from to amount date category");
 			const history = historyExpense.concat(historyIncome);
 			history.sort(function(a,b){
 				return new Date(b.date) - new Date(a.date);
@@ -269,5 +269,30 @@ module.exports = {
 				borrowed_from: friend_borrowed_from,
 			});
 		});
-	}
+	},
+	
+	getUserInfo: async(req, res)=>{
+		const {token} = req.cookies;
+		jwt.verify(token, secret, {}, async(err, info)=>{
+			if(err)throw err;
+			const userDoc = await User.findOne({username: info.username}, "username name college limit balance");
+			res.json(userDoc);
+		})
+	},
+
+	updateInfo: async(req, res) =>{
+		const { token } = req.cookies;
+		jwt.verify(token, secret, {}, async (err, info) => {
+			if (err) throw err;
+			const {name, college, year, limit, balance} = req.body;
+			const upd = await User.findOneAndUpdate({username: info.username}, {
+				name: name,
+				college: college,
+				year : year,
+				limit: limit,
+				balance: balance
+			})
+			res.json(upd);
+		});
+	},
 }

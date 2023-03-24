@@ -28,18 +28,7 @@ function Details({balance}) {
           {balance?.limit}
         </Badge>
       </ListGroup.Item>
-      <ListGroup.Item
-        variant="primary"
-        as="li"
-        className="d-flex justify-content-between align-items-start">
-        <div className="ms-2 me-auto">
-          <div className="fw-bold">Total used up till date  :
-            </div>
-        </div>
-        <Badge style={{ backgroundColor: 'purple' }}>
-          Rs. 1500
-        </Badge>
-      </ListGroup.Item>
+
       <ListGroup.Item
         variant="danger"
         as="li"
