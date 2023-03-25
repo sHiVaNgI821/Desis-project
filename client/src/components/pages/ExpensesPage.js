@@ -65,234 +65,62 @@ function ExpensesPage() {
     return <Navigate to={"/homepage"} />;
   }
   return (
-    <div className="App">
-      <Card style={{ width: "30rem", height: "43rem" }}>
+    <div className="expenses">
+      <div>
         <span className="square bg-primary rounded-9"></span>
-        <Card.Body>
-          <Card.Title
-            style={{ width: "25rem", height: "0.5rem", fontSize: "26px" }}
-          >
-            <FontAwesomeIcon icon={faWallet} /> Money Manager
-          </Card.Title>
-          <Card.Text style={{ padding: "100px", fontSize: "18px" }}>
-            <div
-              className="option-selector"
-              style={{ position: "relative", bottom: "60px" }}
-            >
-              <label>
-                <input
-                  type="radio"
-                  name="option"
-                  value="Expense"
-                  checked={selectedOption === "Expense"}
-                  onChange={handleOptionChange}
-                />
-                Expense
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="option"
-                  value="Income"
-                  checked={selectedOption === "Income"}
-                  onChange={handleOptionChange}
-                />
-                Income
-              </label>
+          <h3><FontAwesomeIcon icon={faWallet} /> Money Manager</h3>
+            <div className="option-selector">
+              <label>Expense</label>
+              <input type="radio" name="option" value="Expense" checked={selectedOption === "Expense"} onChange={handleOptionChange}/>
+              <label>Income</label>
+              <input type="radio" name="option" value="Income" checked={selectedOption === "Income"} onChange={handleOptionChange}/>
             </div>
-            <div
-              className="label-container"
-              style={{ position: "relative", right: "135px", bottom: "70px" }}
-            >
-              {selectedOption === "Expense" ? (
-                <div
-                  className="label Expense"
-                  style={{ fontFamily: "cursive", height: "40px" }}
-                >
-                  <h2
-                    style={{
-                      position: "relative",
-                      bottom: "15px",
-                      fontSize: "25px",
-                    }}
-                  >
-                    {" "}
-                    Add Expense
-                  </h2>
-                  <form onSubmit={submitExpense}>
-                    <label
-                      htmlFor="Title"
-                      style={{ position: "relative", top: "15px" }}
-                    >
-                      Paid to
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value = {to}
-                      onChange = {(e) => setTo(e.target.value)}
-                      style={{ position: "relative", top: "15px" }}
-                    />
-                    <label
-                      htmlFor="amount"
-                      style={{ position: "relative", top: "15px" }}
-                    >
-                      Amount
-                    </label>
-                    <input
-                      type="number"
-                      id="amount"
-                      name="amount"
-                      style={{ position: "relative", top: "15px" }}
-                      value= {amount}
-                      onChange = {(e) => setAmount(e.target.value)}
-                    />
 
-                    <label
-                      htmlFor="date"
-                      style={{ position: "relative", top: "15px" }}
-                    >
-                      Date of Transaction
-                    </label>
-                    <DatePicker
-                      selected={date}
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      dateFormat=" yyyy/MM/dd      hh:mm aa"
-                    />
+            <div className="label-container">
+              {selectedOption === "Expense" ? (
+                <div className="label Expense">
+                  <h2>Add Expense</h2>
+                  <form onSubmit={submitExpense}>
+                    <label htmlFor="Title">Paid to</label>
+                    <input type="text" id="name" name="name" value = {to} onChange = {(e) => setTo(e.target.value)}/>
+
+                    <label htmlFor="amount"> Amount </label>
+                    <input type="number" id="amount" name="amount" value= {amount} onChange = {(e) => setAmount(e.target.value)}/>
+
+                    <label htmlFor="date"> Date of Transaction </label>
+                    <DatePicker selected={date} value={date} onChange={(e) => setDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd      hh:mm aa"/>
                     <div>
                       <div>
-                        <label
-                          htmlFor="category"
-                          style={{ position: "relative", top: "15px" }}
-                          value={category}
-                          onChange={(e) => setCategory(e.target.value)}
-                        >
-                          Category
-                        </label>
+                        <label htmlFor="category" value={category} onChange={(e) => setCategory(e.target.value)}>Category</label>
                       </div>
 
-                      <select
-                        id="category"
-                        style={{
-                          position: "relative",
-                          top: "15px",
-                          borderRadius: "5px",
-                        }}
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                      >
+                      <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
                         {expense_options.map((value) => (
                           <option value={value} key={value}>
                             {value}
                           </option>
                         ))}
                       </select>
-                      {/* <select id="category" style={{position:'relative', top:'15px', borderRadius:'5px'}}>
-                 <option value="food">Food</option>
-                 <option value="shopping">Shopping</option>
-                 <option value="travel">Travel</option>
-                 <option value="medical">Medical</option>
-                 <option value="others">Others</option>
-               </select> */}
                     </div>
-                    <button
-                      type="submit"
-                      style={{
-                        backgroundColor: "purple",
-                        fontWeight: "bold",
-                        color: "white",
-                        position: "relative",
-                        top: "60px",
-                        borderRadius: "5px",
-                      }}
-                    >
-                      Add Expense
-                    </button>
+                    <button type="submit">Add Expense</button>
                   </form>
                 </div>
               ) : (
-                <div
-                  className="label Income"
-                  style={{ fontFamily: "cursive", height: "40px" }}
-                >
-                  <h2
-                    style={{
-                      position: "relative",
-                      bottom: "15px",
-                      fontSize: "25px",
-                    }}
-                  >
-                    Add Income
-                  </h2>
+                <div className="label Income">
+                  <h2> Add Income </h2>
                   <form onSubmit={submitIncome}>
-                    <label
-                      htmlFor="Title"
-                      style={{ position: "relative", top: "15px" }}
-                    >
-                      Received from
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value = {from}
-                      onChange = {(e) => setFrom(e.target.value)}
-                      style={{ position: "relative", top: "15px" }}
-                    />
-                    <label
-                      htmlFor="amount"
-                      style={{ position: "relative", top: "15px" }}
-                    >
-                      Amount:
-                    </label>
-                    <input
-                      type="number"
-                      id="amount"
-                      name="amount"
-                      style={{ position: "relative", top: "15px" }}
-                      value = {amount}
-                      onChange = {(e)=> setAmount(e.target.value)}
-                    />
-
-                    <label
-                      htmlFor="date"
-                      style={{ position: "relative", top: "15px" }}
-                    >
-                      Date of Transaction
-                    </label>
-                    <DatePicker
-                      selected={date}
-                      value ={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      dateFormat=" yyyy/MM/dd      hh:mm aa"
-                    />
+                    <label  htmlFor="Title"> Received from </label>
+                    <input type="text" id="name" name="name" value = {from} onChange = {(e) => setFrom(e.target.value)} />
+                    <label htmlFor="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" value = {amount} onChange = {(e)=> setAmount(e.target.value)}/>
+                    <label htmlFor="date">Date of Transaction</label>
+                    <DatePicker selected={date}  value ={date} onChange={(e) => setDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd      hh:mm aa"/>
                     <div>
                       <div>
-                        <label
-                          htmlFor="category"
-                          style={{ position: "relative", top: "15px" }}
-                        >
-                          Category
-                        </label>
+                        <label htmlFor="category">Category</label>
                       </div>
                       <select
-                        id="category"
-                        style={{
-                          position: "relative",
-                          top: "15px",
-                          borderRadius: "5px",
-                        }}
-                        value = {category}
-                        onChange = {(e)=>setCategory(e.target.value)}
-                      >
+                        id="category"value = {category}onChange = {(e)=>setCategory(e.target.value)}>
                          {income_options.map((value) => (
                           <option value={value} key={value}>
                             {value}
@@ -300,26 +128,12 @@ function ExpensesPage() {
                         ))}
                       </select>
                     </div>
-                    <button
-                      type="submit"
-                      style={{
-                        backgroundColor: "purple",
-                        fontWeight: "bold",
-                        color: "white",
-                        position: "relative",
-                        top: "60px",
-                        borderRadius: "5px",
-                      }}
-                    >
-                      Add Income
-                    </button>
+                    <button type="submit"> Add Income </button>
                   </form>
                 </div>
               )}
             </div>
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      </div>
     </div>
   );
 }

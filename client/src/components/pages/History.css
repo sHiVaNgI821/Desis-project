@@ -2,7 +2,6 @@
   padding-top: 10px;
   position: absolute;
   left: 680px;
-  /* overflow-y: scroll; */
 }
 .transaction-history-card {
   display: flex;
@@ -11,7 +10,7 @@
   padding: 10px;
   border: 1px solid black;
   margin-bottom: 10px;
-  background-color: rgb(211, 156, 224);
+  background-color: #9D4EDD;
   width: 500px;
   font-family:'Climate Crisis', cursive;
 }
@@ -25,8 +24,6 @@
 }
 
 .transaction-history {
-  /* border: 1px solid black; */
-
   padding: 20px;
 }
 

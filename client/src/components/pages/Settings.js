@@ -52,18 +52,22 @@ function Settings() {
           <p className='text-dark mb-0 ms-3'>{userInfo.username}</p>
         </div>
       </div>
-      <form onSubmit = {submit}>
+      <form>
         <div>
           <label className='label2' htmlFor='name'>Name</label>
-          <input type="text" name="name" id="name" className="form-control" value={name} onChange = {(e)=>setName(e.target.value)}/>
+          <input type="text" name="name" id="name" className="form-control" value={"Srushti"}/>
+        </div>
+        <div>
+          <label className='label2' htmlFor='un'>Username</label>
+          <input type="text" name="un" id="un" className="form-control" value={"srushti@3"}/>
         </div>
         <div>
           <label className='label2' htmlFor='clg'>College</label>
-          <input type="text" name="clg" id="clg" className="form-control" value={college} onChange ={(e) => setCollege(e.target.value)} />
+          <input type="text" name="clg" id="clg" className="form-control" value={"IIT BHU"}/>
         </div>
         <div className="form-part">
             <label className='label2'>Choose an year of study </label>
-            <select className="form-select" value={year} onChange = {(e)=>setYear(e.target.value)}>
+            <select className="form-select" value={"B.Tech - Third"}>
               {years.map((value) => (
                 <option value={value} key={value}>
                   {value}
@@ -73,18 +77,13 @@ function Settings() {
         </div>
         <div>
           <label className='label2' htmlFor='limit'>Limit</label>
-          <input type="number" name="limit" id="limit" className="form-control" value={limit} onChange={(e)=>setLimit(e.target.value)}/>
-        </div>
-
-        <div>
-          <label className='label2' htmlFor='limit'>Balance</label>
-          <input type="number" name="limit" id="limit" className="form-control" value={balance} onChange={(e)=>setBalance(e.target.value)}/>
+          <input type="number" name="limit" id="limit" className="form-control" value={"5000"}/>
         </div>
         <br /><br />
 
         <div className='buttons'>
           <button className='cancel-button'>Cancel</button>
-          <button className='save-button' type='submit'>Save changes</button>
+          <button className='save-button'>Save changes</button>
         </div>
       </form>
     </div>

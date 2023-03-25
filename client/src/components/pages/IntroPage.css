@@ -24,11 +24,7 @@ h1
     height: 400px;
     float: right;
 }
-h3
-{
-    text-align: center;
-    color: #9D4EDD;
-}
+
 .partTwo
 {
     display: flex;
