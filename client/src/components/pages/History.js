@@ -6,10 +6,10 @@ function HistoryCard(props) {
 
   return (
     <div className="transaction-history-card">
-      <p className="transaction-history-card__date">{date}</p>
-      <p className="transaction-history-card__description">{description}</p>
-      <p className="transaction-history-card__person">{person}</p>
-      <p className="transaction-history-card__amount">{amount}</p>
+      <p className="transaction-history-card__date text-white">{date}</p>
+      <p className="transaction-history-card__description text-white">{description}</p>
+      <p className="transaction-history-card__person text-white">{person}</p>
+      <p className="transaction-history-card__amount text-white">{amount}</p>
     </div>
   );
 }

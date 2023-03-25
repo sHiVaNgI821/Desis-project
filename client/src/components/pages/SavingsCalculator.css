@@ -1,10 +1,23 @@
+.savings-calculator
+{
+    position: absolute;
+    top: 40px;
+    left: 400px;
+}
 h2 {
     margin-bottom: 20px;
+}
+*
+{
+    font-family: 'Climate Crisis', cursive;
+    font-family: 'Raleway', sans-serif;
 }
   
 label {
     display: block;
     margin-bottom: 10px;
+    font-family: 'Climate Crisis', cursive;
+    font-family: 'Raleway', sans-serif;
 }
   
 input[type="range"] {

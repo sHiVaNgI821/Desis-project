@@ -1,27 +1,55 @@
-import React from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import './Settings.css'
 import dp from '../../images/ProfilePicture.svg'
-
-
+import { UserContext } from '../../contexts/UserContext';
+const years = [
+  "B.Tech - First",
+  "B.Tech - Second",
+  "B.Tech - Third",
+  "B.Tech - Fourth",
+  "IDD - Fifth",
+  "M.Tech",
+  "PhD",
+];
 
 function Settings() {
-  const years = [
-    "B.Tech - First",
-    "B.Tech - Second",
-    "B.Tech - Third",
-    "B.Tech - Fourth",
-    "IDD - Fifth",
-    "M.Tech",
-    "PhD",
-  ];
+  const {userInfo, setUserInfo} = useContext(UserContext)
+  const [name, setName] = useState('');
+  const [college, setCollege ] = useState('');
+  const [year, setYear] = useState(years[0]);
+  const [limit, setLimit] = useState('');
+  const [balance, setBalance] = useState('');
+
+  useEffect(()=>{
+    const userDoc = fetch("http://localhost:4000/getUserInfo", {
+      credentials:"include",
+    });
+    setName(userDoc.name);
+    setCollege(userDoc.college);
+    setYear(userDoc.year);
+    setLimit(userDoc.limit);
+    setBalance(userDoc.balance);
+  }, [])
+
+  async function submit(ev){
+    ev.preventDefault();
+    const resp = await fetch("http://localhost:4000/updateInfo", {
+      method: "PATCH",
+      credentials:"include",
+      body: JSON.stringify({ name, college, year, limit, balance}),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (resp.ok) {
+      alert("Updated Successfully")
+    }
+  }
   return (
     <div className='settings'>
       {/* <h3>Settings</h3> */}
       <div className='d-flex align-items-center mb-3'>
         <img src={dp} className="dp"/>
         <div>
-          <p className='text-dark mb-0 ms-3'>srushti@3</p>
-          <p className='mb-1 ms-3'>Change profile photo</p>
+          <p className='text-dark mb-0 ms-3'>{userInfo.username}</p>
         </div>
       </div>
       <form>

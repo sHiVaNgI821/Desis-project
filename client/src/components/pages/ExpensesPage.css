@@ -138,4 +138,9 @@ button:disabled:active {
 button:disabled:focus-visible {
   box-shadow: none;
 }  */
- 
+.expenses
+{
+  position: absolute;
+  top: 40px;
+  left: 400px;
+}

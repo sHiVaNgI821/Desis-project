@@ -48,5 +48,7 @@ app.get("/getDues", user_actions.getDues);
 app.get("/getHistory", user_actions.getHistory);
 app.get("/getBalance", user_actions.getBalance);
 app.get("/getFriends", user_actions.getFriends);
+app.get("/getUserInfo", user_actions.getUserInfo);
+app.patch("/updateInfo", user_actions.updateInfo);
 
 app.listen(port);

@@ -1,29 +1,73 @@
-.container{
-    position: relative;
-    right: 500px;
+*
+{
+    font-family: 'Climate Crisis', cursive;
+    font-family: 'Raleway', sans-serif;
+}
+.sap
+{
+    position: absolute;
+    top: 20px;
+    left: 400px;
+}
+.card-type-1
+{
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 300px;
+    box-shadow: 2px 2px lightgray;
+}
+.card1-heading
+{
+    font-size: 15px;
+    color: grey;
+}
+.card1-body
+{
+    color: black;
+    font-size: 20px;
+}
+.part1, .part2, .part3
+{
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
 }
 
-.card {
-    width: 10rem;
-    background-color: rgb(196, 143, 201);
-    padding-left: 40px;
-    padding-top: 5px;
-    margin-top: 12px;
-    border-width: 2;
-    border-color: '#ddd';
-    padding: 0.5em 0.5em 0.5em;
-    border-radius: 2em;
-    text-align: center;
-    box-shadow: 0 5px 10px rgba(0,0,0,.4);
+.card-type-2
+{
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px lightgray;
+    border-radius: 10px;
+    width: 470px;
 }
-.card-body{
-    --bs-bg-opacity:0.4;
-    background-color: rgb(196, 143, 201);
+.card-type-3
+{
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px lightgray;
+    border-radius: 10px;
+    width: 470px;
+    height: 270px;
 }
-.card-title{
-    font-family: 'Chilanka', cursive;
+#upcoming
+{
+    overflow-y: scroll;
 }
-.list-group{
-    max-height: 210px;
-    overflow-y:scroll;
+.icon-3
+{
+    color: #9D4EDD;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: #edd7fa;
+    font-size: 30px;
+}
+.heading3
+{
+    font-size: 25px;
+    color: #9D4EDD;
 }
