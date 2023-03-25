@@ -12,14 +12,14 @@ import { Navigate, Link } from "react-router-dom";
 function LeftNav() {
   const { userInfo, setUserInfo } = useContext(UserContext);
   // setUserInfo(userInfo);
-  const name = userInfo?.username;
-  setUserInfo({username: name});
-  if(true){
+  // const name = userInfo?.username;
+  // setUserInfo({username: name});
+  if(userInfo){
     return (
       <div className='leftnav'>
           <Navbar expand="md" className='nav d-md-block sidebar'>
             <br />
-              <Navbar.Brand className='p-3 m-0' href="/"><img src={dp} alt="Pay" className='logo2'/><span className='title2 ms-1'> Hello, {name}</span></Navbar.Brand>
+              <Navbar.Brand className='p-3 m-0' href="/"><img src={dp} alt="Pay" className='logo2'/><span className='title2 ms-1'> Hello, {userInfo.username}</span></Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="d-md-block">
@@ -35,7 +35,8 @@ function LeftNav() {
                       <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/reminder"><FontAwesomeIcon className='icons2 text-white' icon={faCalendarDays}/><span className='items2'> Reminders</span></Link>
                       <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/notification"><FontAwesomeIcon className='icons2 text-white' icon={faBell}/><span className='items2'> Notifications</span></Link>
                       <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/settings"><FontAwesomeIcon className='icons2 text-white' icon={faGear}/><span className='items2'> Settings</span></Link>
-                      <Link className='d-block items mt-0 pt-0 mb-5 text-decoration-none' to="/logout"><FontAwesomeIcon className='icons2 text-white' icon={faRightFromBracket}/><span className='items2'> Logout</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/logout"><FontAwesomeIcon className='icons2 text-white' icon={faRightFromBracket}/><span className='items2'> Logout</span></Link>
+                      <br /><br />
                   </Nav>
               </Navbar.Collapse>
           </Navbar>

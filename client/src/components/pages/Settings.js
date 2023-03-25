@@ -21,14 +21,15 @@ function Settings() {
   const [balance, setBalance] = useState('');
 
   useEffect(()=>{
-    const userDoc = fetch("http://localhost:4000/getUserInfo", {
+    fetch("http://localhost:4000/getUserInfo", {
       credentials:"include",
-    });
-    setName(userDoc.name);
-    setCollege(userDoc.college);
-    setYear(userDoc.year);
-    setLimit(userDoc.limit);
-    setBalance(userDoc.balance);
+    }).then((res)=>res.json()).then((userDoc)=>{
+      setName(userDoc.name);
+      setCollege(userDoc.college);
+      setYear(userDoc.year);
+      setLimit(userDoc.limit);
+      setBalance(userDoc.balance);
+    });   
   }, [])
 
   async function submit(ev){
@@ -49,25 +50,21 @@ function Settings() {
       <div className='d-flex align-items-center mb-3'>
         <img src={dp} className="dp"/>
         <div>
-          <p className='text-dark mb-0 ms-3'>{userInfo.username}</p>
+          <p className='text-dark mb-0 ms-3'>{userInfo?.username}</p>
         </div>
       </div>
-      <form>
+      <form onSubmit = {submit}>
         <div>
           <label className='label2' htmlFor='name'>Name</label>
-          <input type="text" name="name" id="name" className="form-control" value={"Srushti"}/>
-        </div>
-        <div>
-          <label className='label2' htmlFor='un'>Username</label>
-          <input type="text" name="un" id="un" className="form-control" value={"srushti@3"}/>
+          <input type="text" name="name" id="name" className="form-control" value={name} onChange = {(e)=>setName(e.target.value)}/>
         </div>
         <div>
           <label className='label2' htmlFor='clg'>College</label>
-          <input type="text" name="clg" id="clg" className="form-control" value={"IIT BHU"}/>
+          <input type="text" name="clg" id="clg" className="form-control" value={college} onChange ={(e) => setCollege(e.target.value)} />
         </div>
-        <div className="form-part">
+        <div className="form-part mb-0 pb-0">
             <label className='label2'>Choose an year of study </label>
-            <select className="form-select" value={"B.Tech - Third"}>
+            <select className="form-select" value={year} onChange = {(e)=>setYear(e.target.value)}>
               {years.map((value) => (
                 <option value={value} key={value}>
                   {value}
@@ -77,13 +74,18 @@ function Settings() {
         </div>
         <div>
           <label className='label2' htmlFor='limit'>Limit</label>
-          <input type="number" name="limit" id="limit" className="form-control" value={"5000"}/>
+          <input type="number" name="limit" id="limit" className="form-control" value={limit} onChange={(e)=>setLimit(e.target.value)}/>
+        </div>
+
+        <div>
+          <label className='label2' htmlFor='limit'>Balance</label>
+          <input type="number" name="limit" id="limit" className="form-control" value={balance} onChange={(e)=>setBalance(e.target.value)}/>
         </div>
         <br /><br />
 
         <div className='buttons'>
           <button className='cancel-button'>Cancel</button>
-          <button className='save-button'>Save changes</button>
+          <button className='save-button' type='submit'>Save changes</button>
         </div>
       </form>
     </div>
