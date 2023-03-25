@@ -23,19 +23,19 @@ function LeftNav() {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="d-md-block">
-                      <Link disabled className='d-block heading text-white mt-4 mb-0' href="#">ADMINISTRATION</Link>
-                      <Link className='d-block items mt-0 pt-0' to ="/homepage"><FontAwesomeIcon className='icons2 text-white' icon={faChartBar}/><span className='items2'> Dashboard</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to="/peer"><FontAwesomeIcon className='icons2 text-white' icon={faHandHoldingUsd}/><span className='items2'> Peer Lending</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to ="/savings"><FontAwesomeIcon className='icons2 text-white' icon={faCalculator}/><span className='items2'> Savings Calculator</span></Link>
-                      <Link disabled className='d-block  heading text-white mb-0' to="#">MANAGEMENT</Link>
-                      <Link className='d-block items mt-0 pt-0' to="/create"><FontAwesomeIcon className='icons2 text-white' style={{width:'22.5px'}} icon={faIndianRupee}/><span className='items2'> Add expenses</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to="/transaction"><FontAwesomeIcon className='icons2 text-white' icon={faMoneyBillTransfer}/><span className='items2'> Transactions</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to="/friends"><FontAwesomeIcon className='icons2 text-white' icon={faUserGroup}/><span className='items2'> Friends</span></Link>
-                      <Link disabled className='d-block heading text-white mb-0' to="#">OTHER</Link>
-                      <Link className='d-block items mt-0 pt-0' to="/reminder"><FontAwesomeIcon className='icons2 text-white' icon={faCalendarDays}/><span className='items2'> Reminders</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to="/notification"><FontAwesomeIcon className='icons2 text-white' icon={faBell}/><span className='items2'> Notifications</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to="/settings"><FontAwesomeIcon className='icons2 text-white' icon={faGear}/><span className='items2'> Settings</span></Link>
-                      <Link className='d-block items mt-0 pt-0' to="/logout"><FontAwesomeIcon className='icons2 text-white' icon={faRightFromBracket}/><span className='items2'> Logout</span></Link>
+                      <Link disabled className='d-block heading text-white mt-4 mb-0 text-decoration-none' href="#">ADMINISTRATION</Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to ="/homepage"><FontAwesomeIcon className='icons2 text-white' icon={faChartBar}/><span className='items2'> Dashboard</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/peer"><FontAwesomeIcon className='icons2 text-white' icon={faHandHoldingUsd}/><span className='items2'> Peer Lending</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to ="/savings"><FontAwesomeIcon className='icons2 text-white' icon={faCalculator}/><span className='items2'> Savings Calculator</span></Link>
+                      <Link disabled className='d-block heading text-white mb-0 text-decoration-none' to="#">MANAGEMENT</Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/create"><FontAwesomeIcon className='icons2 text-white' style={{width:'22.5px'}} icon={faIndianRupee}/><span className='items2'> Add expenses</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/transaction"><FontAwesomeIcon className='icons2 text-white' icon={faMoneyBillTransfer}/><span className='items2'> Transactions</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/friends"><FontAwesomeIcon className='icons2 text-white' icon={faUserGroup}/><span className='items2'> Friends</span></Link>
+                      <Link disabled className='d-block heading text-white mb-0 text-decoration-none' to="#">OTHER</Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/reminder"><FontAwesomeIcon className='icons2 text-white' icon={faCalendarDays}/><span className='items2'> Reminders</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/notification"><FontAwesomeIcon className='icons2 text-white' icon={faBell}/><span className='items2'> Notifications</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/settings"><FontAwesomeIcon className='icons2 text-white' icon={faGear}/><span className='items2'> Settings</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/logout"><FontAwesomeIcon className='icons2 text-white' icon={faRightFromBracket}/><span className='items2'> Logout</span></Link>
                   </Nav>
               </Navbar.Collapse>
           </Navbar>
