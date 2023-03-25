@@ -1,7 +1,6 @@
 /* Friends.jsx */
 
 import React, { useState, useEffect } from 'react';
-import React, { useState, useEffect } from 'react';
 import Friend from './Friend';
 import './Friends.css';
 import Card from 'react-bootstrap/Card';

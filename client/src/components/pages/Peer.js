@@ -5,6 +5,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Card from 'react-bootstrap/Card';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHandHoldingUsd} from '@fortawesome/free-solid-svg-icons';
+import {UserContext} from '../../contexts/UserContext'
+import {Navigate} from 'react-router-dom'
+
 
 function Peer() {
     

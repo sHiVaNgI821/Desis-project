@@ -19,7 +19,6 @@
     gap: 15px;
     width: 300px;
     box-shadow: 2px 2px lightgray;
-
 }
 .card1-heading
 {
@@ -53,6 +52,11 @@
     box-shadow: 2px 2px lightgray;
     border-radius: 10px;
     width: 470px;
+    height: 270px;
+}
+#upcoming
+{
+    overflow-y: scroll;
 }
 .icon-3
 {
@@ -65,4 +69,5 @@
 .heading3
 {
     font-size: 25px;
+    color: #9D4EDD;
 }

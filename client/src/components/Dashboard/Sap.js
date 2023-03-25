@@ -12,6 +12,7 @@ import Pipi from './Pipi';
 import TransactionHistoryCard from './TransactionHistoryCard';
 import Details from './Details';
 
+
 function Sap(){
     const bar_options = [
         "Food",
@@ -70,52 +71,62 @@ function Sap(){
       }, [category]);
     
     return(
-        <div className='sap'>
-            <div className='part1'>
-                <div className='card-type-1'> 
-                    <h3 className='card1-heading'><FontAwesomeIcon icon={faMoneyBill}/>Balance : Rs.{balanceData?.balance}</h3>
-                </div>
-                <div className='card-type-1'> 
-                    <h3 className='card1-heading'><FontAwesomeIcon icon={faCreditCard} /> Credit: Rs.{balanceData?.totalCred}</h3>
-                </div>
-                <div className='card-type-1'>
-                    <h3 className='card1-heading'><FontAwesomeIcon icon={faMoneyBillTransfer} /> Debit: Rs.{balanceData?.totalDebit}</h3>
-                </div>
+      <div className='sap'>
+          <div className='part1'>
+            <div className='card-type-1'>
+              <FontAwesomeIcon className='icon-3' icon={faMoneyBill}/>
+              <div>
+                <h3 className='card1-heading'>Balance</h3>
+                <h3 className='card1-body'>Rs.{balanceData?.balance}</h3>
+              </div>
             </div>
-            <div className='d-flex'>
-                <div className='card-type-2'>
-                 
-                  
-                    <h3>Monthly Expenditure</h3>
-                    <label>Choose a category for past analysis </label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
-                    {bar_options.map((value) => (
-                      <option value={value} key={value}>
-                        {value}
-                      </option>
-                    ))}
-                  </select>
-                    <BarGraph data={previousData} />
-                </div>
-                <div className='card-type-2'>
-                    <h3>Account Details</h3>
-                    <Details balance={balanceData} />
-                </div>
+
+            <div className='card-type-1'> 
+              <FontAwesomeIcon className='icon-3' icon={faCreditCard} />
+              <div>
+                <h3 className='card1-heading'>Credit</h3>
+                <h3 className='card1-body'>Rs.{balanceData?.totalCred}</h3>
+              </div>
             </div>
-            <div className='d-flex'>
-                <div className='card-type-3'>
-                    <h3>Sectors</h3>
-                    <Pipi pieData={pieData} />
-                </div>
-                <div className='card-type-3'>
-                    <h3>Upcoming Payments</h3>
-                    <TransactionHistoryCard dues={dues} />
-                </div>
+
+            <div className='card-type-1'>
+              <FontAwesomeIcon className='icon-3' icon={faMoneyBillTransfer} /> 
+              <div>
+                <h3 className='card1-heading'>Debit</h3>
+                <h3 className='card1-body'>Rs.{balanceData?.totalDebit}</h3>
+              </div>
             </div>
           </div>
+            <div className='part2'>
+              <div className='card-type-2'>                 
+                <h3 className='heading3 mb-3'>Monthly Expenditure</h3>
+                <label>Choose a category for past analysis </label>
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="ms-3 p-1">
+                  {bar_options.map((value) => (
+                    <option value={value} key={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+                <BarGraph data={previousData} />
+              </div>
+              <div className='card-type-2'>
+                <h3 className='heading3 mb-3'>Account Details</h3>
+                <Details balance={balanceData} />
+              </div>
+            </div>
+            <div className='part3'>
+              <div className='card-type-3'>
+                <h3 className='heading3 mb-3'>Sectors</h3>
+                <Pipi pieData={pieData} />
+              </div>
+              <div className='card-type-3' id='upcoming'>
+                <h3 className='heading3 mb-3'>Upcoming Payments</h3>
+                <TransactionHistoryCard dues={dues} />
+              </div>
+                
+            </div>
+      </div>
     )
 }
 
