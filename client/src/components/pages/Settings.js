@@ -21,15 +21,14 @@ function Settings() {
   const [balance, setBalance] = useState('');
 
   useEffect(()=>{
-    fetch("http://localhost:4000/getUserInfo", {
+    const userDoc = fetch("http://localhost:4000/getUserInfo", {
       credentials:"include",
-    }).then((res)=>res.json()).then((userDoc)=>{
-      setName(userDoc.name);
-      setCollege(userDoc.college);
-      setYear(userDoc.year);
-      setLimit(userDoc.limit);
-      setBalance(userDoc.balance);
-    });   
+    });
+    setName(userDoc.name);
+    setCollege(userDoc.college);
+    setYear(userDoc.year);
+    setLimit(userDoc.limit);
+    setBalance(userDoc.balance);
   }, [])
 
   async function submit(ev){
@@ -50,7 +49,7 @@ function Settings() {
       <div className='d-flex align-items-center mb-3'>
         <img src={dp} className="dp"/>
         <div>
-          <p className='text-dark mb-0 ms-3'>{userInfo?.username}</p>
+          <p className='text-dark mb-0 ms-3'>{userInfo.username}</p>
         </div>
       </div>
       <form>
