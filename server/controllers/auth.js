@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
+const salt = bcrypt.genSaltSync(10);
 
 module.exports = {
 	login: async(req, res) => {
