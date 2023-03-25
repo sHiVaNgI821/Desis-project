@@ -59,23 +59,20 @@ function ReminderPopup({ onSubmit }) {
 
   return (
     <div className="popup">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Date:
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        </label>
+      <form className='form-group' onSubmit={handleSubmit}>
+        <label>Date</label>
+        <input className='form-control' type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         <br />
-        <label>
-          Time:
-          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-        </label>
+
+        <label>Time</label>
+        <input className='form-control' type="time" value={time} onChange={(e) => setTime(e.target.value)} />
         <br />
-        <label>
-          Description:
-          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-        </label>
+
+        <label>Description</label>
+        <input className='form-control' type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
         <br />
-        <button type="submit">Set Reminder</button>
+
+        <button className='reminder-button' type="submit">Set Reminder</button>
       </form>
     </div>
   );
@@ -92,16 +89,33 @@ function ReminderScreen() {
 
   return (
     <div className='reminder-screen'>
-         <div>
-            <h3><FontAwesomeIcon icon={faCalendarDays} /> Reminders</h3>
-                <ul className='list'>
-                    {reminders.map((reminder, index) => (
-                    <li key={index}>{reminder.description} - {reminder.date} at {reminder.time}</li>
-                    ))}
-                </ul>
-                <button onClick={() => setShowPopup(true)}>Add Reminder</button>
-                {showPopup && <ReminderPopup onSubmit={handleReminderSubmit} />}
+      <div className='d-flex align-items-center'>
+        <div>
+          <FontAwesomeIcon className='icon-3' icon={faCalendarDays}/>
         </div>
+        <div className='ms-3'>
+          <h3 className='main-heading'>Reminders</h3>
+        </div>
+      </div>
+      <br />
+
+      <div className='peer-body'>
+        <div>
+          {reminders.map((reminder, index) => (
+          <div className='transaction-card' key={index}>
+            <div>
+              <p className='mb-0 transaction-recipient'>{reminder.description}</p>
+              <p className='transaction-date'>{reminder.date}</p>
+            </div>
+            <div>
+              <p className='transaction-amount'>{reminder.time}</p>
+            </div>
+          </div>
+          ))}
+        </div>
+        <button className='calculate-button' onClick={() => setShowPopup(true)}>Add Reminder</button>
+        {showPopup && <ReminderPopup onSubmit={handleReminderSubmit} />}
+      </div>
     </div>
   );
 }

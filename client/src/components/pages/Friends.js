@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Friend from './Friend';
 import './Friends.css';
-import Card from 'react-bootstrap/Card';
 import FemaleUser from '../../images/FemaleUser.svg';
 import MaleUser from '../../images/MaleUser.svg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -65,21 +64,31 @@ const Friends = () => {
 
   return (
     <div className="friends">
-      <div>
-            <h3><FontAwesomeIcon className='icons2' icon={faUserGroup}/> Friends</h3>
-              <div className="friends-search">
-                  <input type="text" placeholder="Search friends" value={searchTerm} onChange={handleChange} />
-              </div>
-              <div className="friends-list">
-                  {friendData?.borrowed_from?.length && friendData.borrowed_from.map((friend) => (
-                <Friend friend={friend} />
-                ))}
-
-                {friendData?.lended_to?.length && friendData.lended_to.map((friend) => (
-                <Friend friend={friend} />
-                ))}
-              </div>
+      <div className='d-flex align-items-center'>
+        <div>
+          <FontAwesomeIcon className='icon-3' icon={faUserGroup}/>
         </div>
+        <div className='ms-3'>
+          <h3 className='main-heading'>Friends</h3>
+          <p className='mb-0'>Obtain a summary of all of your transactions.</p>
+        </div>
+      </div>
+      <br />
+
+      <div className='peer-body'>
+        <form>
+          <input className='form-control' type="text" placeholder="Search" value={searchTerm} onChange={handleChange} />
+        </form>
+        <div className="friends-list">
+          {friendData?.borrowed_from?.length && friendData.borrowed_from.map((friend) => (
+            <Friend friend={friend} />
+          ))}
+
+          {friendData?.lended_to?.length && friendData.lended_to.map((friend) => (
+            <Friend friend={friend} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
