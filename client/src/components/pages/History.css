@@ -1,32 +1,23 @@
-.card{
-  padding-top: 10px;
-  position: absolute;
-  left: 680px;
-}
-.transaction-history-card {
+.transaction-card
+{
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border: 1px solid black;
+  gap: 150px;
   margin-bottom: 10px;
-  background-color: #9D4EDD;
-  width: 500px;
-  font-family:'Climate Crisis', cursive;
+  border-bottom: 1px solid lightgray;
+  width: 350px;
 }
-
-.transaction-history-card__date {
-  font-weight: bold;
+.transaction-recipient
+{
+  color: black;
+  font-size: 20px;
 }
-
-.transaction-history-card__amount {
-  font-weight: bold;
+.transaction-date
+{
+  color: lightgrey;
 }
-
-.transaction-history {
-  padding: 20px;
-}
-
-.transaction-history h2 {
-  margin-bottom: 10px;
+.transaction-amount
+{
+  color: black;
+  font-size: 20px;
 }

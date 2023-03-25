@@ -93,78 +93,103 @@ function Peer() {
 
   return (
     <div className="peer">
-        <h3><FontAwesomeIcon icon={faHandHoldingUsd} />  Peer Lending</h3>
-        <div>
-          <form>
-            <input type="radio" id='lend' name="option" value="lend" checked={selectedOption === 'lend'} onChange={handleOptionChange}/>
-            <label htmlFor='lend'>Lend</label>
-            <input type="radio" id='borrow' name="option" value="borrow" checked={selectedOption === 'borrow'} onChange={handleOptionChange} />
-            <label htmlFor='borrow'>Borrow</label>
-          </form>
-        </div>
-        <div>
-        {selectedOption === 'lend' ? (
-          <div className="">
-            <form className="form-group">
-              <label htmlFor="to">To:</label>
-              <input type="text" id="to" name='name' value={to} onChange={(e) => setTo(e.target.value)} className="form-control"/>
-              <label htmlFor="amount">Amount:</label>
-              <input type="number" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="form-control"/>
-              <label htmlFor="interest">Interest Rate:</label>
-              <input type="number" id="interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className="form-control"/>
-              <div class="two-col">
-                <div class="col1">
-                <label htmlFor="date">Lent Time:</label>
-                    <DatePicker selected={date} onChange={(newValue) => setDate(newValue)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
-                </div>
-                <div class="col2">
-                  <label htmlFor="date" >Due Date:</label>
-                  <DatePicker selected={date}
-                          onChange={(e) => setDueDate(e)}
-                          showTimeSelect
-                          timeFormat="HH:mm"
-                          timeIntervals={15}
-                          dateFormat=" yyyy/MM/dd hh:mm aa"/>
-                </div>
-              </div>
-              <button type="submit" className='lend-button'>Submit</button>
-            </form>
-          </div>
-        ) : (
+        <div className='d-flex align-items-center'>
           <div>
-            <form className="form-group">
-                <label htmlFor="From">From:</label>
-                <input type="text" id="name" name='name' value = {from} onChange= {(e)=> setFrom(e.target.value)} className='form-control'/>
-                <label htmlFor="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" value = {amount} onChange = {(e) => setAmount(e.target.value)} className="form-control"/>
-                <label htmlFor="interest">Interest Rate:</label>
-                <input type="number" id="interest" name="interest" value = {interest} onChange = {(e) => setInterest(e.target.value)} className="form-control"/>
-                <div class="two-col">
-                  <div class="col1">
-                    <label htmlFor="date" >Borrowed on:</label>
-                    <DatePicker selected={date}
-                          onChange={(e) => setDate(e.target.value)}
-                          showTimeSelect
-                          timeFormat="HH:mm"
-                          timeIntervals={15}
-                          dateFormat=" yyyy/MM/dd hh:mm aa" />
-                  </div>
-                  <div class="col2">
-                    <label htmlFor="date" >Due Date:</label>
-                    <DatePicker selected={date}
-                          onChange={(e) => setDueDate(e.target.value)}
-                          showTimeSelect
-                          timeFormat="HH:mm"
-                          timeIntervals={15}
-                          dateFormat=" yyyy/MM/dd hh:mm aa"/>
-                  </div>
-                </div>
-                <button type="submit" className='borrow-button'>Submit</button>
+            <FontAwesomeIcon className='icon-3' icon={faHandHoldingUsd}/>
+          </div>
+          <div className='ms-3'>
+            <h3 className='main-heading'>Peer Lending</h3>
+            <p>Maintain a record of people that owe you money and the ones that you owe money to.</p>
+          </div>
+        </div>
+        
+        <br />
+
+        <div className='peer-body'>
+          <div>
+            <form>
+              <div className='radio-button'>
+                <input type="radio" id='lend' name="option" value="lend" checked={selectedOption === 'lend'} onChange={handleOptionChange}/>
+                <label htmlFor='lend' className='ms-2'>Lend</label>
+              </div>
+              <div className='radio-button'>
+                <input type="radio" id='borrow' name="option" value="borrow" checked={selectedOption === 'borrow'} onChange={handleOptionChange} />
+                <label htmlFor='borrow' className='ms-2'>Borrow</label>
+              </div>
             </form>
           </div>
-        )}
-      </div>
-      </div>
+          <br />
+          <div>
+          {selectedOption === 'lend' ? (
+            <div className="">
+              <form className="form-group">
+                <div>
+                  <label htmlFor="to">To:</label>
+                  <input type="text" id="to" name='name' value={to} onChange={(e) => setTo(e.target.value)} className="form-control"/>
+                </div>
+                <br />
+                <div>
+                  <label htmlFor="amount">Amount:</label>
+                  <input type="number" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="form-control"/>
+                </div>
+                <br />
+                <div>
+                  <label htmlFor="interest">Interest Rate:</label>
+                  <input type="number" id="interest" name="interest" value={interest} onChange={(e) => setInterest(e.target.value)} className="form-control"/>
+                </div>
+                <br />
+                <div className="two-col">
+                  <div className="col1">
+                    <label htmlFor="date">Lent Time:</label>
+                    <DatePicker className='form-control' selected={date} onChange={(newValue) => setDate(newValue)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                  </div>
+                  <br />
+                  <div className="col2">
+                    <label htmlFor="date" >Due Date:</label>
+                    <DatePicker className='form-control' selected={date} onChange={(e) => setDueDate(e)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                  </div>
+                </div>
+                <br />
+                <button type="submit" className='submit-button'>Submit</button>
+              </form>
+            </div>
+          ) : (
+            <div>
+              <form className="form-group">
+                  <div>
+                    <label htmlFor="From">From:</label>
+                    <input type="text" id="name" name='name' value = {from} onChange= {(e)=> setFrom(e.target.value)} className='form-control'/>
+                  </div>
+                  <br />
+                  <div>
+                    <label htmlFor="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" value = {amount} onChange = {(e) => setAmount(e.target.value)} className="form-control"/>
+                  </div>
+                  <br />
+                  <div>
+                    <label htmlFor="interest">Interest Rate:</label>
+                    <input type="number" id="interest" name="interest" value = {interest} onChange = {(e) => setInterest(e.target.value)} className="form-control"/>
+                  </div>
+                  <br />
+                  <div className="two-col">
+                    <div className="col1">
+                      <label htmlFor="date" >Borrowed on:</label>
+                      <DatePicker className="form-control" selected={date} onChange={(e) => setDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa" />
+                    </div>
+                    <br />
+                    <div className="col2">
+                      <label htmlFor="date" >Due Date:</label>
+                      <DatePicker className="form-control" selected={date} onChange={(e) => setDueDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                    </div>
+                  </div>
+                  <br />
+                  <button type="submit" className='submit-button'>Submit</button>
+              </form>
+            </div>
+          )}
+          </div>
+        </div>
+    </div>
   );
 }
 

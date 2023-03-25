@@ -5,11 +5,14 @@ function HistoryCard(props) {
   const { date, description, person, amount } = props;
 
   return (
-    <div className="transaction-history-card">
-      <p className="transaction-history-card__date text-white">{date}</p>
-      <p className="transaction-history-card__description text-white">{description}</p>
-      <p className="transaction-history-card__person text-white">{person}</p>
-      <p className="transaction-history-card__amount text-white">{amount}</p>
+    <div className='transaction-card'>
+      <div>
+        <p className='mb-0 transaction-recipient'>{person}</p>
+        <p className='transaction-date'>{date}</p>
+      </div>
+      <div>
+        <p className='transaction-amount'>{amount}</p>
+      </div>
     </div>
   );
 }

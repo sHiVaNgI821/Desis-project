@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import './SavingsCalculator.css';
+import {faCalculator } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
+
+
 
 const SavingsCalculator = () => {
   const [targetAmount, setTargetAmount] = useState(0);
@@ -39,50 +45,65 @@ const SavingsCalculator = () => {
   
   }
   return (
-    <div className='savings-calculator'>
-      <h1>Target Amount</h1>
-      <input type="number" value={targetAmount} onChange={(e) => setTargetAmount(e.target.value)} />
+    <div className='savings'>
+      <div className='d-flex align-items-center'>
+          <div>
+            <FontAwesomeIcon className='icon-3' icon={faCalculator}/>
+          </div>
+          <div className='ms-3'>
+            <h3 className='main-heading'>Savings Calculator</h3>
+            <p>Check the amount of money you need to save and the interest rate required to attain your desired goal.</p>
+          </div>
+      </div>
+      <br />
 
-      <h1>Calculate Interest Rate</h1>
-      <div>
-        <label>Time: </label>
-        <input type="range" min="1" max="50" value={time} onChange={(e) => setTime(e.target.value)} />
-        <span>{time} years</span>
-      </div>
-      <div>
-        <label>Monthly Savings: </label>
-        <input type="number" value={monthlySaving} onChange={(e) => setMonthlySaving(e.target.value)} />
-      </div>
-      <button onClick={calculateInterestRate}>Calculate Interest Rate</button>
-      {interestRate1!==-1 && (interestRate1 > 0 ? <p>Interest Rate: {interestRate1}%</p>: "   ERROR: Total Amount is more than Target Amount!")}
+      <form className='savings-form'>
+        <h1 className='heading1'>Target Amount</h1>
+        <input className='form-control' type="number" value={targetAmount} onChange={(e) => setTargetAmount(e.target.value)}/>
+        <br />
+        <h1 className='heading1'>Calculate Interest Rate</h1>
+        <div>
+          <label>Time: </label>
+          <input className='form-range' type="range" min="1" max="50" value={time} onChange={(e) => setTime(e.target.value)} />
+          <span>{time} year(s)</span>
+        </div>
+        <div>
+          <label className='mt-3'>Monthly Savings: </label>
+          <input className='form-control' type="number" value={monthlySaving} onChange={(e) => setMonthlySaving(e.target.value)} />
+        </div>
+        <button className='calculate-button' onClick={calculateInterestRate}>Calculate Interest Rate</button>
+        {interestRate1!==-1 && (interestRate1 > 0 ? <p>Interest Rate: {interestRate1}%</p>: "   ERROR: Total Amount is more than Target Amount!")}
 
-      <h1>Calculate Monthly Savings</h1>
-      <div>
-        <label>Time: </label>
-        <input type="number" value={time2} onChange={(e) => setTime2(e.target.value)} />
-      </div>
-      <div>
-        <label>Interest Rate: </label>
-        <input type="range" min="1" max="30" value={interestRate2} onChange={(e) => setInterestRate2(e.target.value)} />
-        <span>{interestRate2}%</span>
-      </div>
-      <button onClick={calculateMonthlySaving}>Calculate Monthly Savings</button>
-      {monthlySaving2 > 0 && <p>Monthly Savings: {monthlySaving2}</p>}
-      
-      <h1>Calculate Time</h1>
-      <div>
-        <label>Monthly Income Saving: </label>
-        <input type="number" value={monthlySaving3} onChange={(e) => setMonthlySaving3(e.target.value)} />
-      </div>
-      <div>
-        <label>Interest Rate: </label>
-        <input type="range" min="1" max="30" value={interestRate3} onChange={(e) => setInterestRate3(e.target.value)} />
-        <span>{interestRate3}%</span>
-      </div>
-      <button onClick={calculateTime}>Calculate Time</button>
-      {/* {time3!==-1 && (time3 > 0 ? <p>Time: {time3} years</p>: "  ERROR:")} */}
-      {time3 > 0 &&  <p>Time: {time3} years</p>}
-      </div>
+
+        <h1 className='heading1'><br /> Calculate Monthly Savings</h1>
+        <div>
+          <label>Time: </label>
+          <input className='form-control' type="number" value={time2} onChange={(e) => setTime2(e.target.value)} />
+        </div>
+        <div >
+          <label className='mt-4'>Interest Rate: </label>
+          <input className='form-range' type="range" min="1" max="30" value={interestRate2} onChange={(e) => setInterestRate2(e.target.value)} />
+          <span>{interestRate2}%</span>
+        </div>
+        <button className='calculate-button' onClick={calculateMonthlySaving}>Calculate Monthly Savings</button>
+        {monthlySaving2 > 0 && <p>Monthly Savings: {monthlySaving2}</p>}
+
+        <h1 className='heading1'><br /> Calculate Time</h1>
+        <div>
+          <label>Monthly Income Saving: </label>
+          <input className='form-control' type="number" value={monthlySaving3} onChange={(e) => setMonthlySaving3(e.target.value)} />
+        </div>
+        <div>
+          <label className='mt-4'>Interest Rate: </label>
+          <input className='form-range' type="range" min="1" max="30" value={interestRate3} onChange={(e) => setInterestRate3(e.target.value)} />
+          <span>{interestRate3}%</span>
+        </div>
+        <button className='calculate-button' onClick={calculateTime}>Calculate Time</button>
+        {/* {time3!==-1 && (time3 > 0 ? <p>Time: {time3} years</p>: "  ERROR:")} */}
+        {time3 > 0 &&  <p>Time: {time3} years</p>}
+        <br /><br />
+      </form>
+    </div>
   )
 };
 

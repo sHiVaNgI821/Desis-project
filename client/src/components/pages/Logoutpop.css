@@ -1,23 +1,25 @@
 .logout-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(215, 113, 208);
-    border: 1px solid black;
-    padding: 20px;
-    border-radius: 15px;
-    font-family: 'Chilanka', cursive;
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.4);
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #9D4EDD;
+  padding: 20px;
+}
   
-  .logout-popup button {
-    margin: 10px;
-    padding: 5px 10px;
-    width: 100px;
-    border-radius: 15px;
-  }
-  .button{
-    position: absolute;
-    left: 680px;
-  }
+.logout-popup button {
+  margin: 10px;
+  padding: 5px 10px;
+  width: 100px;
+
+}
+
+.button{
+  position: absolute;
+  left: 680px;
+}
+
+.confirmation
+{
+  color: black;
+}

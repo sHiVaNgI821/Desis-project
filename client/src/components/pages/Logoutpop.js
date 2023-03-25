@@ -4,9 +4,9 @@ import './Logoutpop.css';
 function LogoutPopup(props) {
   return (
     <div className="logout-popup">
-      <p>Are you sure you want to log out?</p>
-      <button onClick={props.onConfirm}>Yes</button>
-      <button onClick={props.onCancel}>No</button>
+      <p className='confirmation'>Are you sure you want to log out?</p>
+      <button className='cancel-button' onClick={props.onCancel}>No</button>
+      <button className='save-button' onClick={props.onConfirm}>Yes</button>
     </div>
   );
 }
@@ -32,8 +32,7 @@ function Logoutpop() {
   }
 
   return (
-    <div classname="button">
-      {/* TODO: add your app content here */}
+    <div className="button">
       <button onClick={handleLogout}>Logout</button>
       {showLogoutPopup && <LogoutPopup onConfirm={handleConfirmLogout} onCancel={handleCancelLogout} />}
     </div>

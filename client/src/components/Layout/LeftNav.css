@@ -1,9 +1,11 @@
 .leftnav
 {
     position: static;
+
 }
 .sidebar {
     /* min-height: 100vh !important; */
+    height: 100%;
     width: 280px;
     background-color: #7B2CBF;
 }

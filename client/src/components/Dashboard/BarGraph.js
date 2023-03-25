@@ -63,8 +63,8 @@ function BarGraph({data}) {
 // ]
   return (
     <div>
-      <BarChart width={440} height={200} data={data}>
-        <Bar dataKey="amount" fill="green" />
+      <BarChart  width={440} height={200} data={data}>
+        <Bar dataKey="amount" fill="#7B2CBF" />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey= "_id" />
         <YAxis />
