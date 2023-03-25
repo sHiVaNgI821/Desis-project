@@ -12,7 +12,8 @@ const UserSchema = new Schema({
     balance: {type: Number, default: 0},
     lendingTransactions : [{type: Schema.Types.ObjectId, ref:"lendingTransaction"}],
     expenseTransactions : [{type: Schema.Types.ObjectId, ref: "expenseTransaction"}],
-    incomeTransactions : [{type: Schema.Types.ObjectId, ref: "incomeTransaction"}]
+    incomeTransactions : [{type: Schema.Types.ObjectId, ref: "incomeTransaction"}],
+    reminders : [{type: Schema.Types.ObjectId, ref: "reminder"}]
 });
 
 const UserModel = model('User', UserSchema);
