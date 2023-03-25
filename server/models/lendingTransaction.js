@@ -9,6 +9,7 @@ const lendingSchema = new Schema({
   interest: { type: Number },
   amount:{type: Number},
   date:{type:Date},
+  status:{type:String, default : "pending"}
 }, {timestamps:true});
 
 const lending = model("lendingTransaction", lendingSchema);

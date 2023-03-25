@@ -152,7 +152,7 @@ module.exports = {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			const user = await User.find({ username: info.username });
+			const user = await User.findOne({ username: info.username });
 			const date_now = new Date();
 			const month_end = fns.endOfMonth(new Date(2023, 5, 24));
 			const dues = await lendingTransaction.aggregate([
@@ -244,30 +244,37 @@ module.exports = {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			const user = await User.findOne({ username: info.username }).populate({
-				path: "lendingTransactions",
-				populate: {
-					path: "to from",
+			// const user = await User.findOne({ username: info.username }).populate({
+			// 	path: "lendingTransactions",
+			// 	populate: {
+			// 		path: "to from",
+			// 	},
+			// 	select: ["to", "from", "amount"],
+			// });
+			const user = await User.findOne({username: info.username});
+			const lends = await lendingTransaction.aggregate([
+				{
+					$match:{$or: [{ to: user._id }, { from: user._id }]}
 				},
-				select: ["to", "from", "amount"],
-			});
-			const friend_lended_to = [];
-			const friend_borrowed_from = [];
-			user.lendingTransactions.map((trans) => {
-				if (trans.from.username == info.username) {
-					const to = trans.to.username;
-					const amt = trans.amount;
-					friend_lended_to.push({ username: to, amount: amt });
-				} else {
-					const from = trans.from.username;
-					const amt = trans.amount;
-					friend_borrowed_from.push({ username: from, amount: -amt });
+				{
+					$group: {_id:"$to", totalDue : {$sum : "$amount"}}
 				}
-			});
-			res.json({
-				lended_to: friend_lended_to,
-				borrowed_from: friend_borrowed_from,
-			});
+			])
+			// const friend_lended_to = [];
+			// const friend_borrowed_from = [];
+			// user.lendingTransactions.map((trans) => {
+			// 	if (trans.from.username == info.username) {
+			// 		const to = trans.to.username;
+			// 		const amt = trans.amount;
+			// 		friend_lended_to.push({ username: to, amount: amt });
+			// 	} else {
+			// 		const from = trans.from.username;
+			// 		const amt = trans.amount;
+			// 		friend_borrowed_from.push({ username: from, amount: -amt });
+			// 	}
+			// });
+			res.json(lends);
+			//res.json({friend_borrowed_from, friend_lended_to});
 		});
 	},
 	

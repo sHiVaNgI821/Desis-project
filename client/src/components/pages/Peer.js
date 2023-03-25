@@ -42,38 +42,6 @@ function Peer() {
       setTo(userInfo.username);
     }
   };
-  async function submit(ev) {
-    ev.preventDefault();
-    console.log(to, from);
-    const resp = await fetch("http://localhost:4000/addLending", {
-      method: "POST",
-      body: JSON.stringify({ amount, to, from, interest, date, dueDate }),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (resp.ok) {
-      setRedirect(true);
-    }
-  }
-  if (redirect) {
-    return <Navigate to={"/homepage"} />;
-  }
-
-  async function submit(ev) {
-    ev.preventDefault();
-    console.log(to, from);
-    const resp = await fetch("http://localhost:4000/addLending", {
-      method: "POST",
-      body: JSON.stringify({ amount, to, from, interest, date, dueDate }),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (resp.ok) {
-      setRedirect(true);
-    }
-  }
-  if (redirect) {
-    return <Navigate to={"/homepage"} />;
-  }
-
 
   async function submit(ev) {
     ev.preventDefault();
@@ -95,7 +63,7 @@ function Peer() {
     <div className="peer">
         <h3><FontAwesomeIcon icon={faHandHoldingUsd} />  Peer Lending</h3>
         <div>
-          <form>
+          <form onSubmit={ submit }>
             <input type="radio" id='lend' name="option" value="lend" checked={selectedOption === 'lend'} onChange={handleOptionChange}/>
             <label htmlFor='lend'>Lend</label>
             <input type="radio" id='borrow' name="option" value="borrow" checked={selectedOption === 'borrow'} onChange={handleOptionChange} />
@@ -107,7 +75,7 @@ function Peer() {
           <div className="">
             <form className="form-group">
               <label htmlFor="to">To:</label>
-              <input type="text" id="to" name='name' value={to} onChange={(e) => setTo(e.target.value)} className="form-control"/>
+              <input type="text" id="to" name='name' value={to} defaultValue = "" onChange={(e) => setTo(e.target.value)} className="form-control"/>
               <label htmlFor="amount">Amount:</label>
               <input type="number" id="amount" name="amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="form-control"/>
               <label htmlFor="interest">Interest Rate:</label>
@@ -115,16 +83,15 @@ function Peer() {
               <div class="two-col">
                 <div class="col1">
                 <label htmlFor="date">Lent Time:</label>
-                    <DatePicker selected={date} onChange={(newValue) => setDate(newValue)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                    <DatePicker selected={date} value = {date } onChange={(newValue) => setDate(newValue)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
                 </div>
                 <div class="col2">
                   <label htmlFor="date" >Due Date:</label>
                   <DatePicker selected={date}
                           onChange={(e) => setDueDate(e)}
-                          showTimeSelect
-                          timeFormat="HH:mm"
-                          timeIntervals={15}
-                          dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                          value = {dueDate}
+                        
+                          dateFormat="dd/MM/yyyy"/>
                 </div>
               </div>
               <button type="submit" className='lend-button'>Submit</button>
@@ -144,6 +111,7 @@ function Peer() {
                     <label htmlFor="date" >Borrowed on:</label>
                     <DatePicker selected={date}
                           onChange={(e) => setDate(e.target.value)}
+                          value = {date}
                           showTimeSelect
                           timeFormat="HH:mm"
                           timeIntervals={15}
@@ -152,6 +120,7 @@ function Peer() {
                   <div class="col2">
                     <label htmlFor="date" >Due Date:</label>
                     <DatePicker selected={date}
+                    value = {dueDate}
                           onChange={(e) => setDueDate(e.target.value)}
                           showTimeSelect
                           timeFormat="HH:mm"

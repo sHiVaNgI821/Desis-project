@@ -11,15 +11,13 @@ import { Navigate, Link } from "react-router-dom";
 
 function LeftNav() {
   const { userInfo, setUserInfo } = useContext(UserContext);
-  // setUserInfo(userInfo);
-  const name = userInfo?.username;
-  setUserInfo({username: name});
-  if(true){
+
+  if(userInfo){
     return (
       <div className='leftnav'>
           <Navbar expand="md" className='nav d-md-block sidebar'>
             <br />
-              <Navbar.Brand className='p-3 m-0' href="/"><img src={dp} alt="Pay" className='logo2'/><span className='title2 ms-1'> Hello, {name}</span></Navbar.Brand>
+              <Navbar.Brand className='p-3 m-0' href="/"><img src={dp} alt="Pay" className='logo2'/><span className='title2 ms-1'> Hello, {userInfo.username}</span></Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="d-md-block">

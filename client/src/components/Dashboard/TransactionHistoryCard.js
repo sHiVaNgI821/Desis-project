@@ -4,7 +4,7 @@ import React from 'react';
 import "./TransactionHistoryCard.css"
 
 
-function TransactionHistoryCard({history}) {
+function DuesCard({history}) {
 
   return (
     <div>
@@ -72,4 +72,4 @@ function TransactionHistoryCard({history}) {
     </div>
   );
 }
-export default TransactionHistoryCard;
+export default DuesCard;
