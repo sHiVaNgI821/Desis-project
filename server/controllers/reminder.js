@@ -25,19 +25,19 @@ module.exports = {
 		});
 	},
 
-	getReminder: async (req, res) => {
+	getReminders: async (req, res) => {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			const start = new Date();
-			const end = fns.add(start, {days: 7,});
 			const user = await User.findOne({ username: info.username });
-			const days7_reminder = await reminders.aggregate([
-				{
-					$match: { date: { $gt: end, $lte: start }, from: user._id },
-				},
-			]);
-			res.json(days7_reminder);
+			//const 
+			const reminders = await reminder.find({from : user._id}, "description amount date");
+			// const historyIncome = await incomeTransaction.find({to: user._id}, "from to amount date category");
+			// const history = historyExpense.concat(historyIncome);
+			// history.sort(function(a,b){
+			// 	return new Date(b.date) - new Date(a.date);
+			//   });
+			res.json(reminders);
 		});
 	}
 
