@@ -1,5 +1,5 @@
 import React from 'react'
-import './IntroPage.css'
+import './css/IntroPage.css'
 import introImage1 from '../../images/IntroImage1.svg'
 import introImage2 from '../../images/IntroImage2.svg'
 import introImage3 from '../../images/IntroImage3.svg'
@@ -42,7 +42,7 @@ function IntroPage(){
             </div>
             <hr />
             <footer className='d-flex justify-content-around align-items-center'>
-                <span className='title d-inline'> FinMate</span>
+                <span className="logo-name">FinMate</span>
                 <div>
                     <p className='d-inline pe-5'>About</p>
                     <p className='d-inline'>Help</p>

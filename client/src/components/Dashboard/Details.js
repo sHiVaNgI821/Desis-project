@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Details.css"
+import "./css/Details.css"
 
 function Details({balance}) {
   return (

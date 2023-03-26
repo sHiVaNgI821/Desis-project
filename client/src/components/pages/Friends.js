@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Friend from './Friend';
-import './Friends.css';
+import './css/Friends.css';
 import FemaleUser from '../../images/FemaleUser.svg';
 import MaleUser from '../../images/MaleUser.svg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'

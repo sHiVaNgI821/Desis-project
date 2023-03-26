@@ -1,13 +1,7 @@
 import "./App.css";
-import Post from "./components/Layout/DetailsCard";
-import Header from "./components/Layout/Header";
-import AddLending from "./components/AddLending";
-import AddIncome from "./components/AddIncome";
-import AddExpense from "./components/AddExpense";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import Layout from "./Layout";
-import HomePage from "./components/pages/HomePage";
 import RegisterPage from "./components/pages/RegisterPage";
 import { UserContextProvider } from "./contexts/UserContext";
 import AddTransaction from "./components/pages/AddTransaction";
@@ -16,12 +10,11 @@ import Peer from "./components/pages/Peer"
 import Transaction from "./components/pages/Transaction";
 import Friends from "./components/pages/Friends";
 import ReminderScreen from "./components/pages/ReminderScreen"
-import NotificationList from "./components/pages/NotificationsList"
 import Logoutpop from "./components/pages/Logoutpop"
 import Settings from "./components/pages/Settings";
 import ExpensesPage from "./components/pages/ExpensesPage";
 import SavingsCalculator from "./components/pages/SavingsCalculator"
-import Sap from "./components/Dashboard/Sap"
+import Dashboard from "./components/Dashboard/Dashboard"
 import LeftNav from "./components/Layout/LeftNav";
 
 function App() {
@@ -34,8 +27,8 @@ function App() {
         <Route path="/register" element={<RegisterPage />}></Route>
 
         <Route path="/" element={<Layout />}>
-          <Route index element={<Sap />}></Route>
-          <Route path = "/homepage" element={<Sap />}></Route>
+          <Route index element={<Dashboard />}></Route>
+          <Route path = "/homepage" element={<Dashboard />}></Route>
           <Route path ="/create" element = {<ExpensesPage/>}></Route>   
           <Route path = "/peer" element = {<Peer/>}></Route>
           <Route path = "/transaction" element = {<Transaction/>}></Route>

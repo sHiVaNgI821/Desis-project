@@ -1,7 +1,7 @@
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 import React, {useContext} from 'react';
-import "./TransactionHistoryCard.css"
+import "./css/TransactionHistoryCard.css"
 import { UserContext } from '../../contexts/UserContext';
 import {format, differenceInCalendarDays} from 'date-fns';
 
@@ -41,7 +41,7 @@ function DuesCard({dues}) {
           key={transaction._id}
           date={transaction.date}
           from ={(transaction.from_username)[0].username}
-          amount={parseFloat(transaction.amount).toFixed(2)}
+          amount={(transaction.amount).toFixed(2)}
           dueDate = {transaction.dueDate}
           interest = {transaction.interest}
         />))):"No upcoming payments at the moment"

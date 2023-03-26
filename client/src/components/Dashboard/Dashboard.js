@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMoneyBill, faCreditCard, faMoneyBillTransfer} from '@fortawesome/free-solid-svg-icons';
-import "./Sap.css"
+import "./css/Dashboard.css"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +13,7 @@ import TransactionHistoryCard from './TransactionHistoryCard';
 import Details from './Details';
 
 
-function Sap(){
+function Dashboard(){
     const bar_options = [
         "Food",
         "Travel",
@@ -124,4 +124,4 @@ function Sap(){
 }
 
 
-export default Sap
+export default Dashboard;

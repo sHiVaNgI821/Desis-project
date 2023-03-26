@@ -1,15 +1,20 @@
 .title
 {
-    font-family: 'Climate Crisis', cursive;
+    font-family: 'Orbitron', sans-serif;
     color: #7B2CBF;
     font-size: 30px;
     vertical-align: middle;
     margin-left: 10px;
     text-decoration: none;
 }
+.logo-name
+{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 35px;
+    color: #7B2CBF;
+}
 .items
 {
-    font-family: 'Climate Crisis', cursive;
     font-family: 'Raleway', sans-serif;
     margin: 15px;
     font-size: 18px;
@@ -29,7 +34,7 @@
 }
 .logo
 {
-    height: 100px;
+    height: 80px;
 }
 .signUp
 {

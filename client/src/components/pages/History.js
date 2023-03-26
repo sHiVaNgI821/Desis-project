@@ -1,6 +1,6 @@
 import React,{useContext} from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import './History.css';
+import './css/History.css';
 import {format} from 'date-fns'
 function HistoryCard(props) {
   const {key, date, to, from, amount, category } = props;

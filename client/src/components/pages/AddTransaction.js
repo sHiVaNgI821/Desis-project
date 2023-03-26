@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import './AddTransaction.css'
+import './css/AddTransaction.css'
 
 
 export default function AddTransaction() {

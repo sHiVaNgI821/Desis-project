@@ -1,7 +1,7 @@
 import { useState } from "react";
-import './RegisterPage.css'
+import './css/RegisterPage.css'
 import RegisterImage1 from '../../images/RegisterImage1.svg'
-import logo from '../../images/Logo.svg'
+import logo from '../../images/Logo.jpg'
 import { Navigate, Link } from "react-router-dom";
 
 export default function RegisterPage() {
@@ -50,7 +50,7 @@ export default function RegisterPage() {
       <div className="right-part">
         <br /><br />
         <div className="ms-5">
-          <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/>FinSaathi</Link>
+          <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/><span className="logo-name"> FinMate</span></Link>
         </div>
         <br /><br /><br />
 

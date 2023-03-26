@@ -2,11 +2,11 @@ import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import {UserContext} from '../../contexts/UserContext';
 import LoginImage1 from '../../images/LoginImage1.svg'
-import logo from '../../images/Logo.svg'
+import logo from '../../images/Logo.jpg'
 import { Link } from "react-router-dom";
 
 
-import './LoginPage.css'
+import './css/LoginPage.css'
 
 export default function LoginPage(){
     const [username, setUsername] = useState('');
@@ -43,7 +43,7 @@ export default function LoginPage(){
             <div className="right-part">
                 <br /><br />
                 <div className="ms-5">
-                    <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/>FinSaathi</Link>
+                    <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/><span className="logo-name"> FinMate</span></Link>
                 </div>
                 <br /><br /><br />
                 <form onSubmit = {login} className="p-4 loginForm">

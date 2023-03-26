@@ -1,5 +1,5 @@
 import React from 'react'
-import './LeftNav.css'
+import './css/LeftNav.css'
 // import {Navbar, Nav} from 'react-bootstrap';
 import {Navbar, Nav} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ExpensesPage.css";
+import "./css/ExpensesPage.css";
 import { Navigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

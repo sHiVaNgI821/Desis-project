@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './Friend.css';
+import './css/Friend.css';
 import {format} from 'date-fns';
 
 const Friend = ({ friend }) => {
@@ -16,8 +16,7 @@ const Friend = ({ friend }) => {
   // useEffect(()=>{
 
   // }, [transId])
-  const [, updateState] = React.useState();
- const forceUpdate = React.useCallback(() => updateState({}), []);
+  const [friendData, setFriendData] = useState(friend);
   async function settle(ev, trans_Id){
     ev.preventDefault();
     const resp =  await fetch(`http://localhost:4000/settleTransaction/${trans_Id}`, {
@@ -28,14 +27,22 @@ const Friend = ({ friend }) => {
     if(resp.ok){
       alert("Settled Successfully");
       setTransId(trans_Id);
-      forceUpdate();
+      console.log(friendData.data);
+      const friend_data = friendData.data.map((doc)=>{
+        if(doc.trans_id == trans_Id){
+          doc.status = "settled";
+        }
+        return doc;
+      });
+      console.log(friend_data);
+      setFriendData({_id: friendData._id, data: friend_data});
     }
   }
   return (
     <div>
       <div>
         <div className='friend-card'>
-          <p className='name'>{friend?._id}</p>
+          <p className='name'>{friendData?._id}</p>
           <div>
             <div className='friend-header'>
               <p className='friend-text'><b>Interest</b></p>
@@ -43,7 +50,7 @@ const Friend = ({ friend }) => {
               <p className='friend-text'><b>Due Date</b></p>
               <p className='friend-text'><b>Amount</b></p>
             </div>
-            {friend?.data?.length > 0 && friend.data.map((doc)=>
+            {friendData?.data?.length > 0 && friendData.data.map((doc)=>
             <div className='friend-rows'>
               <p className='friend-text'>{doc.interest}%</p>
               <p className='friend-text'>{format(new Date(doc.date), 'dd/MM/yyyy')}</p>

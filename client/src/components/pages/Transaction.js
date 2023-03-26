@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import History from './History';
 import Card from 'react-bootstrap/Card';
-import './Transaction.css'
+import './css/Transaction.css'
 import { UserContext } from "../../contexts/UserContext";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMoneyBillTransfer} from '@fortawesome/free-solid-svg-icons';

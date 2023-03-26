@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import './Settings.css'
+import './css/Settings.css'
 import dp from '../../images/ProfilePicture.svg'
 import { UserContext } from '../../contexts/UserContext';
 const years = [

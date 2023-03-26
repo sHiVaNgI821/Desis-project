@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import './ReminderScreen.css';
+import React, { useState, useEffect} from 'react';
+import './css/ReminderScreen.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCalendarDays} from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-bootstrap/Modal';
-
+import {format} from 'date-fns';
 
 function ReminderPopup({ onSubmit}) {
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,24 +42,7 @@ function ReminderPopup({ onSubmit}) {
         <button className='reminder-button' type="submit">Set Reminder</button>
       </form>  
       </Modal.Body>
-    </Modal>  
-    // <div className="popup">
-    //   <form className='form-group' onSubmit={handleSubmit}>
-    //     <label>Date</label>
-    //     <input className='form-control' type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-    //     <br />
-
-    //     <label>Time</label>
-    //     <input className='form-control' type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-    //     <br />
-
-    //     <label>Description</label>
-    //     <input className='form-control' type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-    //     <br />
-
-    //     <button className='reminder-button' type="submit">Set Reminder</button>
-    //   </form>
-    // </div>
+    </Modal>
   );
 }
 
@@ -68,7 +50,7 @@ function ReminderScreen() {
   const [reminders, setReminders] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   useEffect(()=>{
-    fetch("http://localhost:4000/getReminder", {
+    fetch(`http://localhost:4000/getReminder`, {
       credentials:"include",
     }).then((res)=>res.json()).then((resp)=>{
       setReminders(resp);
@@ -106,7 +88,7 @@ function ReminderScreen() {
           <div className='reminder-card' key={index}>
             <div>
               <p className='mb-0 reminder-desc'>{reminder.description}</p>
-              <p className='reminder-date'>{reminder.date}</p>
+              <p className='reminder-date'>{format(new Date(reminder.date),'dd/MM/yyyy')}</p>
             </div>
             <div>
               <p className='reminder-amount'>{reminder.amount}</p>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SavingsCalculator.css';
+import './css/SavingsCalculator.css';
 import {faCalculator } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -39,10 +39,6 @@ const SavingsCalculator = () => {
 
   const calculateTime = (ev) => {
     ev.preventDefault();
-    // if(targetAmount<(time*12*monthlySaving)) {
-    //   setTime3(0);
-    // }
-    // else{
     const time = (Math.sqrt((800*targetAmount)/(interestRate3*monthlySaving)) - 1)/2;
     setTime3(Math.ceil(time));
   

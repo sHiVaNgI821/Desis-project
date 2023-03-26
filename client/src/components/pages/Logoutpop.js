@@ -1,6 +1,6 @@
 import React, { useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
-import './Logoutpop.css';
+import './css/Logoutpop.css';
 import { UserContext } from '../../contexts/UserContext';
 
 function LogoutPopup(props) {
