@@ -76,16 +76,23 @@ const Friends = () => {
       <br />
 
       <div>
-        <div className="friends-list">
-        <h2>Borrowed From: </h2>
-          {friendData?.borrows?.length && friendData.borrows.map((friend) => (
-            <Friend friend={friend} />
-          ))}
-
-          <h2>Lended To</h2>
-          {friendData?.lends?.length && friendData.lends.map((friend) => (
-            <Friend friend={friend} />
-          ))}
+        <div>
+          <div className='borrowed-part'> 
+            <h3 className='friends-heading'>Borrowed From: </h3>
+            <div className="friends-list">
+              {friendData?.borrows?.length && friendData.borrows.map((friend) => (
+                <Friend friend={friend} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className='friends-heading'>Lent To</h3>
+            <div className='lent-part'>
+              {friendData?.lends?.length && friendData.lends.map((friend) => (
+                <Friend friend={friend} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
