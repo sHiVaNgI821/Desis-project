@@ -8,12 +8,41 @@ import {faChartBar, faBell, faGear, faCalendarDays, faIndianRupee, faMoneyBillTr
 import dp from '../../images/ProfilePicture.svg'
 import { useEffect, useContext, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
+function LogoutPopup(props) {
+  return (
+    <div className="logout-popup">
+      <p className='confirmation'>Are you sure you want to log out?</p>
+      <button className='cancel-button' onClick={props.onCancel}>No</button>
+      <button className='save-button' onClick={props.onConfirm}>Yes</button>
+    </div>
+  );
+}
 
 function LeftNav() {
   const { userInfo, setUserInfo } = useContext(UserContext);
-  // setUserInfo(userInfo);
-  // const name = userInfo?.username;
-  // setUserInfo({username: name});
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const handleLogout = () => {
+    setShowLogoutPopup(true);
+  }
+
+  const handleCancelLogout = () => {
+    setShowLogoutPopup(false);
+  }
+
+  const handleConfirmLogout = () => {
+    fetch('http://localhost:4000/logout', {
+      credentials:'include',
+      method:'POST'
+    }).then((res) => res.json()).then((info)=>{
+      setUserInfo(null);
+      setShowLogoutPopup(false);
+      setRedirect(true);
+    })}
+    if(redirect){
+      return <Navigate to = "/intro" replace = {true}/>
+    }
+
   if(userInfo){
     return (
       <div className='leftnav'>
@@ -35,7 +64,8 @@ function LeftNav() {
                       <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/reminder"><FontAwesomeIcon className='icons2 text-white' icon={faCalendarDays}/><span className='items2'> Reminders</span></Link>
                       <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/notification"><FontAwesomeIcon className='icons2 text-white' icon={faBell}/><span className='items2'> Notifications</span></Link>
                       <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/settings"><FontAwesomeIcon className='icons2 text-white' icon={faGear}/><span className='items2'> Settings</span></Link>
-                      <Link className='d-block items mt-0 pt-0 text-decoration-none' to="/logout"><FontAwesomeIcon className='icons2 text-white' icon={faRightFromBracket}/><span className='items2'> Logout</span></Link>
+                      <Link className='d-block items mt-0 pt-0 text-decoration-none' onClick={handleLogout}><FontAwesomeIcon className='icons2 text-white' icon={faRightFromBracket}/><span className='items2'> Logout       {showLogoutPopup && <LogoutPopup onConfirm={handleConfirmLogout} onCancel={handleCancelLogout} />}
+</span></Link>
                       <br /><br />
                   </Nav>
               </Navbar.Collapse>

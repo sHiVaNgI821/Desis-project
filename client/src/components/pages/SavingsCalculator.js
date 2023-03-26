@@ -64,7 +64,7 @@ const SavingsCalculator = () => {
         <h1 className='heading1'>Calculate Interest Rate</h1>
         <div>
           <label>Time: </label>
-          <input className='form-range' type="range" min="1" max="50" value={time} onChange={(e) => setTime(e.target.value)} />
+          <input className='form-range' type="range" min="1" max="30" value={time} onChange={(e) => setTime(e.target.value)} />
           <span>{time} year(s)</span>
         </div>
         <div>
@@ -72,7 +72,7 @@ const SavingsCalculator = () => {
           <input className='form-control' type="number" value={monthlySaving} onChange={(e) => setMonthlySaving(e.target.value)} />
         </div>
         <button className='calculate-button' onClick={calculateInterestRate}>Calculate Interest Rate</button>
-        {interestRate1!==-1 && (interestRate1 > 0 ? <p>Interest Rate: {interestRate1}%</p>: "   ERROR: Total Amount is more than Target Amount!")}
+        {interestRate1!==-1 && (interestRate1 > 0 ? <p>Given your monthly savings pattern, and the time for which you are willing to invest your money, you should look for a savings option that gives an interest rate of - {interestRate1}% in order to achieve the target amount</p>: "   ERROR: Total Amount is more than Target Amount!")}
 
 
         <h1 className='heading1'><br /> Calculate Monthly Savings</h1>
@@ -86,7 +86,7 @@ const SavingsCalculator = () => {
           <span>{interestRate2}%</span>
         </div>
         <button className='calculate-button' onClick={calculateMonthlySaving}>Calculate Monthly Savings</button>
-        {monthlySaving2 > 0 && <p>Monthly Savings: {monthlySaving2}</p>}
+        {monthlySaving2 > 0 && <p>Given the interest rate that you are being offered and the time for which you are willing to keep your money invested, you should aim for monthly savings of Rs {monthlySaving2} in order to achieve your target amount</p>}
 
         <h1 className='heading1'><br /> Calculate Time</h1>
         <div>
@@ -100,7 +100,7 @@ const SavingsCalculator = () => {
         </div>
         <button className='calculate-button' onClick={calculateTime}>Calculate Time</button>
         {/* {time3!==-1 && (time3 > 0 ? <p>Time: {time3} years</p>: "  ERROR:")} */}
-        {time3 > 0 &&  <p>Time: {time3} years</p>}
+        {time3 > 0 &&  <p>Given your monthly savings pattern and the interest rate being offered, you should invest your money for a period of {time3} years in order to achieve your target</p>}
         <br /><br />
       </form>
     </div>

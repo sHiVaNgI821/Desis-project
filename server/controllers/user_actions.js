@@ -152,14 +152,22 @@ module.exports = {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			const user = await User.find({ username: info.username });
+			const user = await User.findOne({ username: info.username });
 			const date_now = new Date();
 			const month_end = fns.endOfMonth(new Date(2023, 5, 24));
 			const dues = await lendingTransaction.aggregate([
 				{
+					$lookup:{
+						from : "users",
+						localField:"from",
+						foreignField:"_id",
+						as : "from_username"
+					}
+				},
+				{
 					$match: {
 						to: user._id,
-						dueDate: {$gt : date_now, $lte: month_end}
+						dueDate: {$gte : date_now, $lte: month_end}
 					},
 				},
 				{
@@ -167,6 +175,7 @@ module.exports = {
 				    dueDate: 1,
 				  },
 				},
+
 			]);
 			res.json(dues);
 		});
@@ -244,30 +253,71 @@ module.exports = {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			const user = await User.findOne({ username: info.username }).populate({
-				path: "lendingTransactions",
-				populate: {
-					path: "to from",
+			// const user = await User.findOne({ username: info.username }).populate({
+			// 	path: "lendingTransactions",
+			// 	populate: {
+			// 		path: "to from",
+			// 	},
+			// 	select: ["to", "from", "amount"],
+			// });
+			const user = await User.findOne({username: info.username});
+			const lends = await lendingTransaction.aggregate([
+				{
+					$lookup:{
+						from : "users",
+						localField:"to",
+						foreignField:"_id",
+						as : "to_username"
+					}
 				},
-				select: ["to", "from", "amount"],
-			});
-			const friend_lended_to = [];
-			const friend_borrowed_from = [];
-			user.lendingTransactions.map((trans) => {
-				if (trans.from.username == info.username) {
-					const to = trans.to.username;
-					const amt = trans.amount;
-					friend_lended_to.push({ username: to, amount: amt });
-				} else {
-					const from = trans.from.username;
-					const amt = trans.amount;
-					friend_borrowed_from.push({ username: from, amount: -amt });
+				{
+					$match:{ from: user._id }
+				},
+				{
+					$unwind: "$to_username",
+				},
+				{
+					$group: {_id:"$to_username.username", amount : {$sum : "$amount"}}
 				}
-			});
-			res.json({
-				lended_to: friend_lended_to,
-				borrowed_from: friend_borrowed_from,
-			});
+			]);
+
+			const borrows = await lendingTransaction.aggregate([
+				{
+					$lookup:{
+						from : "users",
+						localField:"from",
+						foreignField:"_id",
+						as : "from_username"
+					}
+				},
+				{
+					$match:{ to: user._id }
+				},
+				{
+					$unwind: "$from_username",
+				},
+				{
+					$group: {_id:"$from_username.username", amount : {$sum : {'$multiply':['$amount',-1]}}}
+				}
+			]);
+			// ;(await lendingTransaction.find()).forEach(
+			// 	doc => User.update({$set})
+			// )
+			// const friend_lended_to = [];
+			// const friend_borrowed_from = [];
+			// user.lendingTransactions.map((trans) => {
+			// 	if (trans.from.username == info.username) {
+			// 		const to = trans.to.username;
+			// 		const amt = trans.amount;
+			// 		friend_lended_to.push({ username: to, amount: amt });
+			// 	} else {
+			// 		const from = trans.from.username;
+			// 		const amt = trans.amount;
+			// 		friend_borrowed_from.push({ username: from, amount: -amt });
+			// 	}
+			// });
+			res.json({lends, borrows});
+			//res.json({friend_borrowed_from, friend_lended_to});
 		});
 	},
 	

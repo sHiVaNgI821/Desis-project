@@ -11,9 +11,6 @@ import {Navigate} from 'react-router-dom'
 
 function Peer() {
     
-  // const [selectedOption, setSelectedOption] = useState('lend');
-  // const [date, setDate] = useState(new Date());
-
   const { userInfo, setUserInfo } = useContext(UserContext);
   const [selectedOption, setSelectedOption] = useState("lend");
   const [date, setDate] = useState(new Date());
@@ -42,39 +39,6 @@ function Peer() {
       setTo(userInfo.username);
     }
   };
-  async function submit(ev) {
-    ev.preventDefault();
-    console.log(to, from);
-    const resp = await fetch("http://localhost:4000/addLending", {
-      method: "POST",
-      body: JSON.stringify({ amount, to, from, interest, date, dueDate }),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (resp.ok) {
-      setRedirect(true);
-    }
-  }
-  if (redirect) {
-    return <Navigate to={"/homepage"} />;
-  }
-
-  async function submit(ev) {
-    ev.preventDefault();
-    console.log(to, from);
-    const resp = await fetch("http://localhost:4000/addLending", {
-      method: "POST",
-      body: JSON.stringify({ amount, to, from, interest, date, dueDate }),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (resp.ok) {
-      setRedirect(true);
-    }
-  }
-  if (redirect) {
-    return <Navigate to={"/homepage"} />;
-  }
-
-
   async function submit(ev) {
     ev.preventDefault();
     console.log(to, from);
@@ -122,7 +86,7 @@ function Peer() {
           <div>
           {selectedOption === 'lend' ? (
             <div className="">
-              <form className="form-group">
+              <form className="form-group" onSubmit={submit}>
                 <div>
                   <label htmlFor="to">To:</label>
                   <input type="text" id="to" name='name' value={to} onChange={(e) => setTo(e.target.value)} className="form-control"/>
@@ -141,12 +105,12 @@ function Peer() {
                 <div className="two-col">
                   <div className="col1">
                     <label htmlFor="date">Lent Time:</label>
-                    <DatePicker className='form-control' selected={date} onChange={(newValue) => setDate(newValue)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                    <DatePicker className='form-control' selected = {date} value = {date} onChange={(newValue) => setDate(newValue)} dateFormat="dd/MM/yyyy"/>
                   </div>
                   <br />
                   <div className="col2">
                     <label htmlFor="date" >Due Date:</label>
-                    <DatePicker className='form-control' selected={date} onChange={(e) => setDueDate(e)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                    <DatePicker className='form-control' selected ={dueDate} value = {dueDate} onChange={(e) => setDueDate(e)} dateFormat="dd/MM/yyyy"/>
                   </div>
                 </div>
                 <br />
@@ -155,7 +119,7 @@ function Peer() {
             </div>
           ) : (
             <div>
-              <form className="form-group">
+              <form className="form-group" onSubmit={submit}>
                   <div>
                     <label htmlFor="From">From:</label>
                     <input type="text" id="name" name='name' value = {from} onChange= {(e)=> setFrom(e.target.value)} className='form-control'/>
@@ -174,12 +138,12 @@ function Peer() {
                   <div className="two-col">
                     <div className="col1">
                       <label htmlFor="date" >Borrowed on:</label>
-                      <DatePicker className="form-control" selected={date} onChange={(e) => setDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa" />
+                      <DatePicker className="form-control" selected ={date} value ={date} onChange={(e) => setDate(e.target.value)} dateFormat="dd/MM/yyyy" />
                     </div>
                     <br />
                     <div className="col2">
                       <label htmlFor="date" >Due Date:</label>
-                      <DatePicker className="form-control" selected={date} onChange={(e) => setDueDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd hh:mm aa"/>
+                      <DatePicker className="form-control" selected={dueDate} value ={dueDate} onChange={(e) => setDueDate(e.target.value)} dateFormat="dd/MM/yyyy"/>
                     </div>
                   </div>
                   <br />
