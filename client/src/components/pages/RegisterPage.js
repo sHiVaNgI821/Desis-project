@@ -33,7 +33,7 @@ export default function RegisterPage() {
       alert("Registration successful! Please login");
       setRedirect(true);
     } else {
-      alert("Registration failed! Try again");
+      alert("Username in already in use.");
     }
   }
   if(redirect){
