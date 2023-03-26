@@ -138,12 +138,12 @@ function Peer() {
                   <div className="two-col">
                     <div className="col1">
                       <label htmlFor="date" >Borrowed on:</label>
-                      <DatePicker className="form-control" selected ={date} value ={date} onChange={(e) => setDate(e.target.value)} dateFormat="dd/MM/yyyy" />
+                      <DatePicker className="form-control" selected ={date} value ={date} onChange={(e) => setDate(e)} dateFormat="dd/MM/yyyy" />
                     </div>
                     <br />
                     <div className="col2">
                       <label htmlFor="date" >Due Date:</label>
-                      <DatePicker className="form-control" selected={dueDate} value ={dueDate} onChange={(e) => setDueDate(e.target.value)} dateFormat="dd/MM/yyyy"/>
+                      <DatePicker className="form-control" selected={dueDate} value ={dueDate} onChange={(e) => setDueDate(e)} dateFormat="dd/MM/yyyy"/>
                     </div>
                   </div>
                   <br />

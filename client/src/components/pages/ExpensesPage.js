@@ -105,7 +105,7 @@ function ExpensesPage() {
               <br />
               <div>
                 <label htmlFor="date"> Date of Transaction </label>
-                <DatePicker className="form-control" selected={date} value={date} onChange={(e) => setDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd      hh:mm aa"/>
+                <DatePicker className="form-control" selected={date} value={date} onChange={(e) => setDate(e)} dateFormat = "dd/MM/yyyy"/>
               </div>
               <br />
               <div>
@@ -139,7 +139,7 @@ function ExpensesPage() {
               <br />
               <div>
                 <label htmlFor="date">Date of Transaction</label>
-                <DatePicker className="form-control" selected={date}  value ={date} onChange={(e) => setDate(e.target.value)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat=" yyyy/MM/dd      hh:mm aa"/>
+                <DatePicker className="form-control" selected={date}  value ={date} onChange={(e) => setDate(e)} dateFormat = "dd/MM/yyyy"/>
               </div>
               <br />
               <div>
