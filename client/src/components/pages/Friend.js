@@ -21,7 +21,7 @@ const Friend = ({ friend }) => {
             {friend?.data?.length > 0 && friend.data.map((doc)=>
             <li>
                 Interest:{doc.interest}, Date: {format(new Date(doc.date), 'dd/MM/yyyy')}, DueDate: {format(new Date(doc.date), 'dd/MM/yyyy')}, Amount: {doc.amount}
-                <li><button>Settle</button></li>
+                <li><button type="submit" onClick={settle}>Settle</button></li>
             </li>)}
             </ul>
           <p className="status">{status}</p>
