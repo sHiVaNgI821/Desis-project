@@ -9,9 +9,6 @@ import {faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-
 import Header from '../Layout/Header'
 
 function IntroPage(){
-    // return (<>
-    //     Here's the intro page where we tell about ourselves. It appears prior to user login and after logout.
-    // </>);
     return (
         <div>
             <Header />

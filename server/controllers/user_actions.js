@@ -5,13 +5,9 @@ const expenseTransaction = require("../models/expenseTransaction");
 const incomeTransaction = require("../models/incomeTransaction");
 
 
-// const mongoose = require("mongoose");
-// const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
-// const salt = bcrypt.genSaltSync(10);
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
-// const port = process.env.PORT || 4000;
 const fns = require("date-fns");
 
 module.exports = {
@@ -186,7 +182,6 @@ module.exports = {
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
 			const user = await User.findOne({ username: info.username });
-			//const 
 			const historyExpense = await expenseTransaction.find({from : user._id}, "from to amount date category");
 			const historyIncome = await incomeTransaction.find({to: user._id}, "from to amount date category");
 			const history = historyExpense.concat(historyIncome);
@@ -253,13 +248,6 @@ module.exports = {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			// const user = await User.findOne({ username: info.username }).populate({
-			// 	path: "lendingTransactions",
-			// 	populate: {
-			// 		path: "to from",
-			// 	},
-			// 	select: ["to", "from", "amount"],
-			// });
 			const user = await User.findOne({username: info.username});
 			const lends = await lendingTransaction.aggregate([
 				{
@@ -280,8 +268,6 @@ module.exports = {
 					$group: {_id:"$to_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount", status:"$status"}}} 
 				}
 			]);
-			// const lendings = 
-
 			const borrows = await lendingTransaction.aggregate([
 				{
 					$lookup:{
@@ -301,24 +287,7 @@ module.exports = {
 					$group: {_id:"$from_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount", status:"$status"}}} 
 				}
 			]);
-			// ;(await lendingTransaction.find()).forEach(
-			// 	doc => User.update({$set})
-			// )
-			// const friend_lended_to = [];
-			// const friend_borrowed_from = [];
-			// user.lendingTransactions.map((trans) => {
-			// 	if (trans.from.username == info.username) {
-			// 		const to = trans.to.username;
-			// 		const amt = trans.amount;
-			// 		friend_lended_to.push({ username: to, amount: amt });
-			// 	} else {
-			// 		const from = trans.from.username;
-			// 		const amt = trans.amount;
-			// 		friend_borrowed_from.push({ username: from, amount: -amt });
-			// 	}
-			// });
 			res.json({lends, borrows});
-			//res.json({friend_borrowed_from, friend_lended_to});
 		});
 	},
 	

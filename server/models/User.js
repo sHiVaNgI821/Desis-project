@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const {Schema, model} = mongoose;
 
 const UserSchema = new Schema({
-    // _id: {type: Schema.Types.ObjectId, required, unique:true},
     username: {type:String, required:true, min : 4, unique:true},
     password: {type:String, required:true},
     name:{type:String, required : true},

@@ -50,36 +50,4 @@ function DuesCard({dues}) {
 
   );
 }
-
-    //   {/* <ListGroup>
-    //     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-    //       <div className="ms-2 me-auto">
-    //         <div className="fw-bold">Due: Tomorrow</div>
-    //         You owe to Srushti Parbat
-    //       </div>
-    //       <Badge bg="primary">Rs. 500</Badge>
-    //     </ListGroup.Item>
-    //     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-    //       <div className="ms-2 me-auto">
-    //         <div className="fw-bold">Due: 20-03-2023</div>
-    //         You owe to Vishal Gupta
-    //       </div>
-    //       <Badge bg="primary" >Rs. 1000</Badge>
-    //     </ListGroup.Item>
-    //     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-    //       <div className="ms-2 me-auto">
-    //         <div className="fw-bold">Due: 24-03-2023</div>
-    //         You owe to Shivangi Nayak
-    //       </div>
-    //       <Badge style={{ backgroundColor: 'purple' }}> Rs. 100 </Badge>
-    //     </ListGroup.Item>
-    //     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
-    //       <div className="ms-2 me-auto">
-    //         <div className="fw-bold">Due: 06-04-2023</div>
-    //         You owe to Dada
-    //       </div>
-    //       <Badge style={{ backgroundColor: 'purple' }}> Rs. 1000 </Badge>
-    //     </ListGroup.Item>
-    //   </ListGroup>
-    // </div> */}
 export default DuesCard;

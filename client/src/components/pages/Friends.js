@@ -1,5 +1,3 @@
-/* Friends.jsx */
-
 import React, { useState, useEffect } from 'react';
 import Friend from './Friend';
 import './css/Friends.css';

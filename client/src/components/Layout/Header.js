@@ -11,18 +11,6 @@ import logo from '../../images/Logo.jpg'
 
 export default function Header() {
   const {setUserInfo, userInfo} = useContext(UserContext);
-
-  // useEffect(()=>{
-  //   fetch('http://localhost:4000/profile', {
-  //     credentials:'include',
-  //   }).then(response =>{
-  //     response.json().then(userinfo=>{
-  //       setUserInfo(userinfo);
-  //     });
-  //   });
-  // }, []);
-
-
   function logout(){
     fetch('http://localhost:4000/logout', {
       credentials:'include',

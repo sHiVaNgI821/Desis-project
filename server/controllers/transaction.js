@@ -6,7 +6,6 @@ const incomeTransaction = require("../models/incomeTransaction");
 
 
 const bcrypt = require("bcrypt");
-// const salt = bcrypt.genSaltSync(10);
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
 

@@ -11,11 +11,6 @@ const Friend = ({ friend }) => {
   } else {
     status = 'Settled';
   }
-  const [transId, setTransId] = useState();
-
-  // useEffect(()=>{
-
-  // }, [transId])
   const [friendData, setFriendData] = useState(friend);
   async function settle(ev, trans_Id){
     ev.preventDefault();
@@ -26,7 +21,6 @@ const Friend = ({ friend }) => {
     });
     if(resp.ok){
       alert("Settled Successfully");
-      setTransId(trans_Id);
       console.log(friendData.data);
       const friend_data = friendData.data.map((doc)=>{
         if(doc.trans_id == trans_Id){

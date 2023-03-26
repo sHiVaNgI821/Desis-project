@@ -2,7 +2,6 @@ const User = require("../models/User");
 const reminder = require("../models/reminder");
 
 const bcrypt = require("bcrypt");
-// const salt = bcrypt.genSaltSync(10);
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
 
@@ -35,8 +34,6 @@ module.exports = {
 			const date_now = fns.add(new Date(), {days: -15});
 			const end = fns.add(date_now, {days: 15});
 			const user = await User.findOne({ username: info.username });
-			// console.log(date_now, user._id);
-			// console.log(end);
 			const lend_transactions = await reminder.aggregate([
 				{
 					$match: {

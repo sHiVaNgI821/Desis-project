@@ -9,8 +9,6 @@ const incomeSchema = new extendSchema(BaseTransactionSchema, {
   to: { type: Schema.Types.ObjectId, ref: "User", required: true },
   dueDate: { type: Date },
   interest: { type: Number },
-  // amount:{type: Number},
-  // date:{type:Date},
   category: {type: String},
 }, {timestamps:true});
 

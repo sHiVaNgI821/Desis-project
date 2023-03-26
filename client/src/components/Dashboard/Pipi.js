@@ -25,7 +25,6 @@ const PieRechartComponent = ({pieData})=>{
       </Pie>
       <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
       <Legend layout="vertical" align="right"/>
-      {/* <Tooltip /> */}
       </PieChart>
       );
 }

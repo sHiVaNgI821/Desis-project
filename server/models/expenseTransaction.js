@@ -9,8 +9,6 @@ const expenseSchema = new extendSchema(BaseTransactionSchema, {
   to: { type: String },
   dueDate: { type: Date },
   interest: { type: Number },
-  // amount:{type: Number},
-  // date:{type:Date},
   category:{type: String}
 }, {timestamps:true});
 
