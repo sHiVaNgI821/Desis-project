@@ -75,10 +75,7 @@ const Friends = () => {
       </div>
       <br />
 
-      <div className='peer-body'>
-        <form>
-          <input className='form-control' type="text" placeholder="Search" value={searchTerm} onChange={handleChange} />
-        </form>
+      <div>
         <div className="friends-list">
         <h2>Borrowed From: </h2>
           {friendData?.borrows?.length && friendData.borrows.map((friend) => (
