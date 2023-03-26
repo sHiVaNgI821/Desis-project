@@ -29,7 +29,7 @@ function Transaction() {
         
       <br />
       
-      <div className='peer-body'>
+      <div>
         <History transactions={history} />
       </div>
     </div>

@@ -80,12 +80,12 @@ function NotificationsList() {
           <div key={index} className='notification'>
             <div>
               <div>
-                <p className="mb-0 transaction-recipient">{notification.message}</p>
-                <p className="transaction-date">{notification.date}</p>
+                <p className="mb-0 reminder-desc">{notification.message}</p>
+                <p className="reminder-date">{notification.date}</p>
               </div>
             </div>
             <div>
-                <p className="transaction-amount">{`Rs. ${notification.amount} ${notification.description}`}</p>
+                <p className="reminder-amount">{`Rs. ${notification.amount} ${notification.description}`}</p>
             </div>
           </div>
         ))}
