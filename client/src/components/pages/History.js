@@ -13,7 +13,7 @@ function HistoryCard(props) {
       <p className='transaction-part'>{userInfo?.id == from ? "Paid to " + to : "Received from " + from}</p>
       <p className='transaction-part'>{date_format}</p>
       <p className='transaction-part'>Rs. {amount}</p>
-      <p className='transaction-part'>{key}</p>
+      <p className='transaction-part'>{category}</p>
     </div>
     
   );
