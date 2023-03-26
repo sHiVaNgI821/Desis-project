@@ -7,6 +7,7 @@ const baseOption = {
     timestamps: true,
 }
 const reminderSchema = new Schema({
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
 	description:{type:String},
     amount:{type: Number},
     date:{type:Date}

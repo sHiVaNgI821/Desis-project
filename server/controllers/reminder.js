@@ -6,6 +6,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET_KEY;
 
+const fns = require("date-fns");
+
 module.exports = {
 	addReminder: async (req, res) => {
 		const { token } = req.cookies;
@@ -14,9 +16,10 @@ module.exports = {
 			const { description, amount, date } = req.body;
 			const usr = await User.findOne({ username: info.username });
 			const reminderDoc = await reminder.create({
-			description,
-			amount,
-			date,
+				userId: usr._id,
+				description,
+				amount,
+				date,
 			});
 			const upd = await User.findByIdAndUpdate(usr._id, {
 			$push: { reminders: reminderDoc._id },
@@ -25,19 +28,24 @@ module.exports = {
 		});
 	},
 
-	getReminders: async (req, res) => {
+	getReminder: async (req, res) => {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
+			const date_now = fns.add(new Date(), {days: -1});
+			const end = fns.add(date_now, {days: 7});
 			const user = await User.findOne({ username: info.username });
-			//const 
-			const reminders = await reminder.find({from : user._id}, "description amount date");
-			// const historyIncome = await incomeTransaction.find({to: user._id}, "from to amount date category");
-			// const history = historyExpense.concat(historyIncome);
-			// history.sort(function(a,b){
-			// 	return new Date(b.date) - new Date(a.date);
-			//   });
-			res.json(reminders);
+			// console.log(date_now, user._id);
+			// console.log(end);
+			const lend_transactions = await reminder.aggregate([
+				{
+					$match: {
+						date: { $gt: date_now, $lte: end },
+						userId: user._id,
+					},
+				},
+			]);
+			res.json(lend_transactions);
 		});
 	}
 
