@@ -53,6 +53,6 @@ app.get("/getUserInfo", user_actions.getUserInfo);
 app.patch("/updateInfo", user_actions.updateInfo);
 
 app.post("/addReminder", reminders.addReminder);
-app.get("/getReminders", reminders.getReminders);
+app.get("/getReminder", reminders.getReminder);
 
 app.listen(port);
