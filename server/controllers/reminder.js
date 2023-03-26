@@ -32,9 +32,11 @@ module.exports = {
 		const { token } = req.cookies;
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
-			const date_now = new Date();
+			const date_now = fns.add(new Date(), {days: -1});
 			const end = fns.add(date_now, {days: 7});
 			const user = await User.findOne({ username: info.username });
+			// console.log(date_now, user._id);
+			// console.log(end);
 			const lend_transactions = await reminder.aggregate([
 				{
 					$match: {
