@@ -277,9 +277,10 @@ module.exports = {
 					$unwind: "$to_username",
 				},
 				{
-					$group: {_id:"$to_username.username", amount : {$sum : "$amount"}}
+					$group: {_id:"$to_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount"}}} 
 				}
 			]);
+			// const lendings = 
 
 			const borrows = await lendingTransaction.aggregate([
 				{
@@ -297,7 +298,7 @@ module.exports = {
 					$unwind: "$from_username",
 				},
 				{
-					$group: {_id:"$from_username.username", amount : {$sum : {'$multiply':['$amount',-1]}}}
+					$group: {_id:"$from_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount"}}} 
 				}
 			]);
 			// ;(await lendingTransaction.find()).forEach(

@@ -37,7 +37,7 @@ export default function RegisterPage() {
     }
   }
   if(redirect){
-    return <Navigate to= {"/homepage"} replace={true} />
+    return <Navigate to= {"/login"} />
   }
   return (
     <div className="total">

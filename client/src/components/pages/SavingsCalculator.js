@@ -19,7 +19,8 @@ const SavingsCalculator = () => {
   const [monthlySaving3, setMonthlySaving3] = useState(0);
   
   
-  const calculateInterestRate = () => {
+  const calculateInterestRate = (ev) => {
+    ev.preventDefault();
     if(targetAmount<(time*12*monthlySaving)) {
       setInterestRate1(0);
     }
@@ -30,12 +31,14 @@ const SavingsCalculator = () => {
     
   }
 
-  const calculateMonthlySaving = () => {
+  const calculateMonthlySaving = (ev) => {
+    ev.preventDefault();
     const savings = ((targetAmount*100*2) / ((12* time2)*(12*time2 + 1) * interestRate2));
     setMonthlySaving2(savings.toFixed(2));
   }
 
-  const calculateTime = () => {
+  const calculateTime = (ev) => {
+    ev.preventDefault();
     // if(targetAmount<(time*12*monthlySaving)) {
     //   setTime3(0);
     // }
@@ -72,7 +75,7 @@ const SavingsCalculator = () => {
           <input className='form-control' type="number" value={monthlySaving} onChange={(e) => setMonthlySaving(e.target.value)} />
         </div>
         <button className='calculate-button' onClick={calculateInterestRate}>Calculate Interest Rate</button>
-        {interestRate1!==-1 && (interestRate1 > 0 ? <p>Given your monthly savings pattern, and the time for which you are willing to invest your money, you should look for a savings option that gives an interest rate of - {interestRate1}% in order to achieve the target amount</p>: "   ERROR: Total Amount is more than Target Amount!")}
+        {interestRate1!==-1 && (interestRate1 > 0 ? <p>Given your monthly savings pattern, and the time for which you are willing to invest your money, you should look for a savings option that gives an interest rate of {interestRate1}% in order to achieve the target amount</p>: "You can achieve your monetary goal by simply saving money, even at a 0% interest rate ")}
 
 
         <h1 className='heading1'><br /> Calculate Monthly Savings</h1>

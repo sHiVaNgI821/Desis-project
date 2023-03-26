@@ -3,7 +3,7 @@ import { UserContext } from '../../contexts/UserContext';
 import './History.css';
 import {format} from 'date-fns'
 function HistoryCard(props) {
-  const { date, to, from, amount, category } = props;
+  const {key, date, to, from, amount, category } = props;
   const {userInfo, setUserInfo} = useContext(UserContext)
   const date_format = format(new Date(date), 'dd/MM/yyyy')
 
@@ -13,7 +13,7 @@ function HistoryCard(props) {
       <p className='transaction-part'>{userInfo?.id == from ? "Paid to " + to : "Received from " + from}</p>
       <p className='transaction-part'>{date_format}</p>
       <p className='transaction-part'>Rs. {amount}</p>
-      <p className='transaction-part'>{category}</p>
+      <p className='transaction-part'>{key}</p>
     </div>
     
   );

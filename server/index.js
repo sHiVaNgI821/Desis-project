@@ -38,6 +38,7 @@ app.post("/register", auth.register);
 app.post("/addLending", transaction_api.lend);
 app.post("/addExpense", transaction_api.addExpense);
 app.post("/addIncome", transaction_api.addIncome);
+app.patch("/settleTransaction/:id", transaction_api.settleTransaction);
 
 // To get information/statistics for the users
 app.get("/profile", user_actions.profile);

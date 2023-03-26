@@ -36,16 +36,11 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Sap />}></Route>
           <Route path = "/homepage" element={<Sap />}></Route>
-          {/* <Route path ="/addLending" element = {<AddLending />}></Route> 
-          <Route path ="/addExpense" element = {<AddExpense/>}></Route>
-          <Route path = "/addIncome" element = {<AddIncome />}></Route> */}
           <Route path ="/create" element = {<ExpensesPage/>}></Route>   
-          
           <Route path = "/peer" element = {<Peer/>}></Route>
           <Route path = "/transaction" element = {<Transaction/>}></Route>
           <Route path = "/friends" element = {<Friends/>}></Route>
           <Route path = "/reminder" element = {<ReminderScreen/>}></Route>
-          <Route path = "/notification" element = {<NotificationList/>}></Route>
           <Route path = "/logout" element = {<Logoutpop/>}></Route>
           <Route path = "/settings" element = {<Settings/>}></Route>
           <Route path = "/savings" element = {<SavingsCalculator/>}></Route>
