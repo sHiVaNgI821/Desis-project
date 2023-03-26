@@ -50,7 +50,7 @@ export default function RegisterPage() {
       <div className="right-part">
         <br /><br />
         <div className="ms-5">
-          <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/>FinSaathi</Link>
+          <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/><span className="logo-name">FinMate</span></Link>
         </div>
         <br /><br /><br />
 
