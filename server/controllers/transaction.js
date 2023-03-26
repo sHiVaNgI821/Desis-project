@@ -105,7 +105,7 @@ module.exports = {
 			if (docs) {
 				bal = docs.balance;
 				const user2 = await User.findByIdAndUpdate(uto._id, {
-				balance: bal - parseInt(amount),
+				balance: bal + parseInt(amount),
 				$push: { expenseTransactions: transactionDoc._id },
 				});
 			}
