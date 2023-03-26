@@ -19,7 +19,7 @@ module.exports = {
 				});
 			});
 			} else {
-			res.json("Invalid Credentials");
+			res.status(401).json({});
 			}
 		} catch (e) {
 			console.log(e);
@@ -33,22 +33,32 @@ module.exports = {
 
 	register: async (req, res) => {
 		const { username, password, name, college, yearOfStudy, limit } = req.body;
-		try {
-			const userDoc = await User.create({
-			username,
-			password: bcrypt.hashSync(password, salt),
-			name,
-			college,
-			yearOfStudy: yearOfStudy,
-			limit: limit,
-			});
-			res.json({ requestData: { username, password } });
-		} catch (e) {
-			console.log(e);
-			res.status(404).json(e);
+		const all_usernames = await User.aggregate([
+			{
+				$match:{
+					username: username
+				}
+			}
+		]);
+		console.log(all_usernames);
+		if(all_usernames.length == 0){
+			try {
+				const userDoc = await User.create({
+				username,
+				password: bcrypt.hashSync(password, salt),
+				name,
+				college,
+				yearOfStudy: yearOfStudy,
+				limit: limit,
+				});
+				res.json({ requestData: { username, password } });
+			} catch (e) {
+				console.log(e);
+				res.status(404).json(e);
+			}
+		}
+		else{
+			res.status(409).json({});
 		}
 	}
 }
-
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF2YW50aWthIiwiaWQiOiI2NDFlOWQxYmFjNmQ1OTc1ZTYxYTAyYWQiLCJpYXQiOjE2Nzk3Mjc5MjJ9.moDk9f94WB0gytlcgOurKbyeTQ0raUMUhths5p5Gc5U

@@ -27,7 +27,7 @@ export default function LoginPage(){
                 setRedirect(true);
             });
         }else{
-          alert('Failed')
+          alert('Invalid Credentials')
         }
     }
     if(redirect){

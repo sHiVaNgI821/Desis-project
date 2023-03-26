@@ -49,18 +49,16 @@ const months = [
   "December",
 ];
 function BarGraph({data}) {
-  // const data = [
-  //   { name: "Jan", Expected_expense: 65, True_expense: 28 },
-  //   { name: "Feb", Expected_expense: 59, True_expense: 48 },
-  //   { name: "Mar", Expected_expense: 80, True_expense: 40 },
-  //   { name: "Apr", Expected_expense: 81, True_expense: 19 },
-  //   { name: "May", Expected_expense: 56, True_expense: 86 },
-  //   { name: "June", Expected_expense: 70, True_expense: 75 },
-  //   { name: "July", Expected_expense: 60, True_expense: 106 },
-  // ];
-// const data = [
-//   {}
-// ]
+  for (var key in data) {
+    // console.log(typeof data[key]._id)
+    data[key] = {
+      "month" : months[data[key]._id],
+      ...data[key]
+    }
+    // console.log(months[data[key]._id])
+
+  }
+  
   return (
     <div>
     {console.log(months[data?.id])}
@@ -68,7 +66,7 @@ function BarGraph({data}) {
   
         <Bar dataKey="amount" name={months[data?._id]} fill="#7B2CBF" />
         <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey= "_id"  label={{ value: months[data?._id]}}/>
+        <XAxis dataKey= "month"/>
         <YAxis />
         <Tooltip />
       </BarChart>
