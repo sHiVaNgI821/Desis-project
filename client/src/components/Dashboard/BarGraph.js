@@ -63,10 +63,12 @@ function BarGraph({data}) {
 // ]
   return (
     <div>
+    {console.log(months[data?.id])}
       <BarChart  width={440} height={200} data={data}>
+  
         <Bar dataKey="amount" name={months[data?._id]} fill="#7B2CBF" />
         <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey= "_id" label={months[data?.id]}/>
+        <XAxis dataKey= "_id"  label={{ value: months[data?._id]}}/>
         <YAxis />
         <Tooltip />
       </BarChart>

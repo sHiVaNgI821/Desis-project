@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect} from 'react';
 import './Friend.css';
+import {format} from 'date-fns';
 
 const Friend = ({ friend }) => {
   let status = '';
@@ -18,7 +19,8 @@ const Friend = ({ friend }) => {
       <div className="friend-info">
         {/* <img src={friend.picture} alt={friend.name} /> */}
         <div>
-          <h3>{friend._id}</h3>
+          <h3>{friend?._id}</h3>
+          <ul>{friend?.data?.length > 0 && friend.data.map((doc)=><li>Interest:{doc.interest}, Date: {format(new Date(doc.date), 'dd/MM/yyyy')}, DueDate: {format(new Date(doc.date), 'dd/MM/yyyy')}, Amount: {doc.amount}</li>)}</ul>
           <p className="status">{status}</p>
         </div>
       </div>

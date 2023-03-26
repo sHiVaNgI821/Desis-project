@@ -80,10 +80,12 @@ const Friends = () => {
           <input className='form-control' type="text" placeholder="Search" value={searchTerm} onChange={handleChange} />
         </form>
         <div className="friends-list">
+        <h2>Borrowed From: </h2>
           {friendData?.borrows?.length && friendData.borrows.map((friend) => (
             <Friend friend={friend} />
           ))}
 
+          <h2>Lended To</h2>
           {friendData?.lends?.length && friendData.lends.map((friend) => (
             <Friend friend={friend} />
           ))}

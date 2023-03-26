@@ -70,9 +70,20 @@ module.exports = {
 			date: new Date(date),
 			category,
 			});
-			const upd = await User.findByIdAndUpdate(ufrom._id, {
-			$push: { expenseTransactions: transactionDoc._id },
+			User.findById(ufrom._id, "balance")
+			.then(async (docs) => {
+			if (docs) {
+				bal = docs.balance;
+				const user2 = await User.findByIdAndUpdate(ufrom._id, {
+				balance: bal - parseInt(amount),
+				$push: { expenseTransactions: transactionDoc._id },
+				});
+			}
+			})
+			.then((err) => {
+			console.log(err);
 			});
+			
 			res.json(transactionDoc);
 		});
 	},
@@ -90,10 +101,32 @@ module.exports = {
 			date: new Date(date),
 			category,
 			});
-			const upd = await User.findByIdAndUpdate(uto._id, {
-			$push: { incomeTransactions: transactionDoc._id },
+			User.findById(uto._id, "balance")
+			.then(async (docs) => {
+			if (docs) {
+				bal = docs.balance;
+				const user2 = await User.findByIdAndUpdate(uto._id, {
+				balance: bal - parseInt(amount),
+				$push: { expenseTransactions: transactionDoc._id },
+				});
+			}
+			})
+			.then((err) => {
+			console.log(err);
 			});
 			res.json(transactionDoc);
+		});
+	},
+
+	settleTransaction: async(req, res)=>{
+		const { token } = req.cookies;
+		jwt.verify(token, secret, {}, async (err, info) => {
+			if (err) throw err;
+			const trans_id = req.params.id;
+			const update_trans = await lendingTransaction.findByIdAndUpdate(trans_id, {
+				status: "settled",
+			});
+			res.json(update_trans);
 		});
 	}
 }
