@@ -102,13 +102,13 @@ function ReminderScreen() {
       <div className='peer-body'>
         <div>
           {reminders.map((reminder, index) => (
-          <div className='transaction-card' key={index}>
+          <div className='reminder-card' key={index}>
             <div>
-              <p className='mb-0 transaction-recipient'>{reminder.description}</p>
-              <p className='transaction-date'>{reminder.date}</p>
+              <p className='mb-0 reminder-desc'>{reminder.description}</p>
+              <p className='reminder-date'>{reminder.date}</p>
             </div>
             <div>
-              <p className='transaction-amount'>{reminder.time}</p>
+              <p className='reminder-amount'>{reminder.time}</p>
             </div>
           </div>
           ))}

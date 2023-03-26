@@ -36,3 +36,25 @@ ul
 {
     list-style-type: none;
 }
+
+.reminder-card
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+    width: 350px;
+    justify-content: space-between;
+}
+
+.reminder-desc, .reminder-amount
+{
+    font-size: 20px;
+    color: black;
+}
+
+.reminder-date
+{
+    font-size: 15px;
+    color: lightgray;
+}

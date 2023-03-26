@@ -8,18 +8,12 @@ function HistoryCard(props) {
   const date_format = format(new Date(date), 'dd/MM/yyyy')
 
   return (
-      <div className='transaction-card'>
-      <div>
-        <p className='mb-0 transaction-recipient'>{userInfo?.id == from ? "Debit": "Credit"}</p>
-        <p className='mb-0 transaction-recipient'>{userInfo?.id == from ? "Paid to " + to : "Received from " + from}</p>
-
-        <p className='transaction-date'>{date_format}</p>
-      </div>
-      <div>
-        <p className='transaction-amount'>{amount}</p>
-        <p className='transaction-amount'>{category}</p>
-
-      </div>
+    <div className='transaction-card'>
+      <p className='transaction-part'>{userInfo?.id == from ? "Debit": "Credit"}</p>
+      <p className='transaction-part'>{userInfo?.id == from ? "Paid to " + to : "Received from " + from}</p>
+      <p className='transaction-part'>{date_format}</p>
+      <p className='transaction-part'>Rs. {amount}</p>
+      <p className='transaction-part'>{category}</p>
     </div>
     
   );
@@ -30,15 +24,15 @@ function History(props) {
 
   return (
     <div className="transaction-history">
+      <div className='transaction-card'>
+        <p className='transaction-part'><b>Type</b></p>
+        <p className='transaction-part'><b>Paid / Received</b></p>
+        <p className='transaction-part'><b>Date</b></p>
+        <p className='transaction-part'><b>Amount</b></p>
+        <p className='transaction-part'><b>Category</b></p>
+      </div>
       {transactions?.map((transaction) => (
-        <HistoryCard
-          key={transaction._id}
-          date={transaction.date}
-          to = {transaction. to}
-          from ={transaction.from}
-          amount={transaction.amount}
-          category = {transaction.category}
-        />
+        <HistoryCard key={transaction._id} date={transaction.date} to = {transaction. to} from ={transaction.from} amount={transaction.amount} category = {transaction.category}/>
       ))}
     </div>
   );
