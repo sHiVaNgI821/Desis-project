@@ -42,7 +42,7 @@ function IntroPage(){
             </div>
             <hr />
             <footer className='d-flex justify-content-around align-items-center'>
-                <span className='title d-inline'> FinSaathi</span>
+                <span className='title d-inline'> FinMate</span>
                 <div>
                     <p className='d-inline pe-5'>About</p>
                     <p className='d-inline'>Help</p>

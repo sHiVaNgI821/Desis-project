@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <div>
         <div className="nav">
-          <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/>FinSaathi</Link>
+          <Link to="/" className="title"><img src={logo} alt="Pay" className='logo'/>FinMate</Link>
           <Navbar expand="md">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

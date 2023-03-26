@@ -10,38 +10,6 @@ import {faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 
 const Friends = () => {
-  const [friends, setFriends] = useState([
-    {
-      id: 1,
-      name: 'Vishal Gupta',
-      picture: MaleUser,
-      expenses: 500,
-    },
-    {
-      id: 2,
-      name: 'Shreya Parbat',
-      picture: FemaleUser,
-      expenses: 0,
-    },
-    {
-      id: 3,
-      name: 'Mohit Chauhan',
-      picture: MaleUser,
-      expenses: -250,
-    },
-    {
-        id: 4,
-        name: 'Shivangi Nayak',
-        picture: FemaleUser,
-        expenses: 750,
-      },
-      {
-        id: 5,
-        name: 'Ashneer Grover',
-        picture: FemaleUser,
-        expenses: -1750,
-      },
-  ]);
 
   const [friendData, setFriendData] = useState();
   useEffect(() => {
@@ -52,15 +20,6 @@ const Friends = () => {
       .then((friendData) => setFriendData(friendData));
   }, []);
 
-  
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-  const filteredFriends = friends.filter((friend) =>
-    friend.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="friends">
@@ -76,16 +35,23 @@ const Friends = () => {
       <br />
 
       <div>
-        <div className="friends-list">
-        <h2>Borrowed From: </h2>
-          {friendData?.borrows?.length && friendData.borrows.map((friend) => (
-            <Friend friend={friend} />
-          ))}
-
-          <h2>Lended To</h2>
-          {friendData?.lends?.length && friendData.lends.map((friend) => (
-            <Friend friend={friend} />
-          ))}
+        <div>
+          <div className='borrowed-part'> 
+            <h3 className='friends-heading'>Borrowed From: </h3>
+            <div className="friends-list">
+              {friendData?.borrows?.length && friendData.borrows.map((friend) => (
+                <Friend friend={friend} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className='friends-heading'>Lent To</h3>
+            <div className='lent-part'>
+              {friendData?.lends?.length && friendData.lends.map((friend) => (
+                <Friend friend={friend} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

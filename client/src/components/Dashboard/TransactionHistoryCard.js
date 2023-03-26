@@ -41,7 +41,7 @@ function DuesCard({dues}) {
           key={transaction._id}
           date={transaction.date}
           from ={(transaction.from_username)[0].username}
-          amount={transaction.amount}
+          amount={parseFloat(transaction.amount).toFixed(2)}
           dueDate = {transaction.dueDate}
           interest = {transaction.interest}
         />))):"No upcoming payments at the moment"

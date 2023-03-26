@@ -277,7 +277,7 @@ module.exports = {
 					$unwind: "$to_username",
 				},
 				{
-					$group: {_id:"$to_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount"}}} 
+					$group: {_id:"$to_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount", status:"$status"}}} 
 				}
 			]);
 			// const lendings = 
@@ -298,7 +298,7 @@ module.exports = {
 					$unwind: "$from_username",
 				},
 				{
-					$group: {_id:"$from_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount"}}} 
+					$group: {_id:"$from_username.username", data: {$push:{trans_id:"$_id", interest:"$interest", dueDate:"$dueDate", date:"$date", amount:"$amount", status:"$status"}}} 
 				}
 			]);
 			// ;(await lendingTransaction.find()).forEach(
