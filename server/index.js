@@ -27,6 +27,7 @@ const auth = require("./controllers/auth.js");
 const transaction_api = require("./controllers/transaction.js");
 const user_actions = require("./controllers/user_actions.js");
 const { getMonthly } = require("./controllers/user_actions.js");
+const reminders = require("./controllers/reminder.js");
 
 // actions for authentication
 app.post("/login", auth.login);
@@ -50,5 +51,8 @@ app.get("/getBalance", user_actions.getBalance);
 app.get("/getFriends", user_actions.getFriends);
 app.get("/getUserInfo", user_actions.getUserInfo);
 app.patch("/updateInfo", user_actions.updateInfo);
+
+app.post("/addReminder", reminders.addReminder);
+app.get("/getReminders", reminders.getReminders);
 
 app.listen(port);

@@ -18,7 +18,7 @@ const Friend = ({ friend }) => {
       <div className="friend-info">
         {/* <img src={friend.picture} alt={friend.name} /> */}
         <div>
-          <h3>{friend.username}</h3>
+          <h3>{friend._id}</h3>
           <p className="status">{status}</p>
         </div>
       </div>

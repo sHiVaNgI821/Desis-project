@@ -62,7 +62,7 @@ function Settings() {
           <label className='label2' htmlFor='clg'>College</label>
           <input type="text" name="clg" id="clg" className="form-control" value={college} onChange ={(e) => setCollege(e.target.value)} />
         </div>
-        <div className="form-part">
+        <div className="form-part mb-0 pb-0">
             <label className='label2'>Choose an year of study </label>
             <select className="form-select" value={year} onChange = {(e)=>setYear(e.target.value)}>
               {years.map((value) => (

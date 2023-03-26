@@ -27,7 +27,6 @@ function Sap(){
       const [category, setCategory] = useState("Food");
       const [balanceData, setBalanceData] = useState();
       const [pieData, setPieData] = useState();
-      const [history, setHistory] = useState();
       const [previousData, setPreviousData] = useState();
       const [dues, setDues] = useState();
       useEffect(() => {
@@ -38,26 +37,20 @@ function Sap(){
           fetch("http://localhost:4000/getCurrentExpense", {
             credentials: "include",
           }),
-    
-          fetch("http://localhost:4000/getHistory", {
-            credentials: "include",
-          }),
           fetch("http://localhost:4000/getDues", {
             credentials: "include",
           }),
         ])
-          .then(([resBalance, resPieData, resHistory, resDues]) =>
+          .then(([resBalance, resPieData, resDues]) =>
             Promise.all([
               resBalance.json(),
               resPieData.json(),
-              resHistory.json(),
               resDues.json(),
             ])
           )
-          .then(([dataBalance, dataPie, dataHistory, dataDues]) => {
+          .then(([dataBalance, dataPie, dataDues]) => {
             setBalanceData(dataBalance);
             setPieData(dataPie);
-            setHistory(dataHistory);
             setDues(dataDues);
           });
       }, []);

@@ -4,7 +4,6 @@ import { CustomTooltip } from "./CustomToolTip";
 
 const PieRechartComponent = ({pieData})=>{
    const COLORS = ['#9D4EDD', '#7B2CBF', '#3C096C', 'purple', "#6a74b7", "#8a7c93"];
-   console.log(1, pieData)
    return (
       <PieChart width={440} height={200}>
       <Pie

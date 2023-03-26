@@ -157,9 +157,17 @@ module.exports = {
 			const month_end = fns.endOfMonth(new Date(2023, 5, 24));
 			const dues = await lendingTransaction.aggregate([
 				{
+					$lookup:{
+						from : "users",
+						localField:"from",
+						foreignField:"_id",
+						as : "from_username"
+					}
+				},
+				{
 					$match: {
 						to: user._id,
-						dueDate: {$gt : date_now, $lte: month_end}
+						dueDate: {$gte : date_now, $lte: month_end}
 					},
 				},
 				{
@@ -167,6 +175,7 @@ module.exports = {
 				    dueDate: 1,
 				  },
 				},
+
 			]);
 			res.json(dues);
 		});
@@ -254,12 +263,46 @@ module.exports = {
 			const user = await User.findOne({username: info.username});
 			const lends = await lendingTransaction.aggregate([
 				{
-					$match:{$or: [{ to: user._id }, { from: user._id }]}
+					$lookup:{
+						from : "users",
+						localField:"to",
+						foreignField:"_id",
+						as : "to_username"
+					}
 				},
 				{
-					$group: {_id:"$to", totalDue : {$sum : "$amount"}}
+					$match:{ from: user._id }
+				},
+				{
+					$unwind: "$to_username",
+				},
+				{
+					$group: {_id:"$to_username.username", amount : {$sum : "$amount"}}
 				}
-			])
+			]);
+
+			const borrows = await lendingTransaction.aggregate([
+				{
+					$lookup:{
+						from : "users",
+						localField:"from",
+						foreignField:"_id",
+						as : "from_username"
+					}
+				},
+				{
+					$match:{ to: user._id }
+				},
+				{
+					$unwind: "$from_username",
+				},
+				{
+					$group: {_id:"$from_username.username", amount : {$sum : {'$multiply':['$amount',-1]}}}
+				}
+			]);
+			// ;(await lendingTransaction.find()).forEach(
+			// 	doc => User.update({$set})
+			// )
 			// const friend_lended_to = [];
 			// const friend_borrowed_from = [];
 			// user.lendingTransactions.map((trans) => {
@@ -273,7 +316,7 @@ module.exports = {
 			// 		friend_borrowed_from.push({ username: from, amount: -amt });
 			// 	}
 			// });
-			res.json(lends);
+			res.json({lends, borrows});
 			//res.json({friend_borrowed_from, friend_lended_to});
 		});
 	},

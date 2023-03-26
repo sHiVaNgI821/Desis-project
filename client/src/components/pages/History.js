@@ -8,13 +8,20 @@ function HistoryCard(props) {
   const date_format = format(new Date(date), 'dd/MM/yyyy')
 
   return (
-    <div className="transaction-history-card">
-      <p className="transaction-history-card__date text-white">{date_format}</p>
-      <p className="transaction-history-card__description text-white">{userInfo?.id == from ? "Debit": "Credit"}</p>
-      <p className="transaction-history-card__description text-white">{userInfo?.id == from ? "Paid to " + to : "Received from " + from}</p>
-      <p className="transaction-history-card__person text-white">{category}</p>
-      <p className="transaction-history-card__amount text-white">{amount}</p>
+      <div className='transaction-card'>
+      <div>
+        <p className='mb-0 transaction-recipient'>{userInfo?.id == from ? "Debit": "Credit"}</p>
+        <p className='mb-0 transaction-recipient'>{userInfo?.id == from ? "Paid to " + to : "Received from " + from}</p>
+
+        <p className='transaction-date'>{date_format}</p>
+      </div>
+      <div>
+        <p className='transaction-amount'>{amount}</p>
+        <p className='transaction-amount'>{category}</p>
+
+      </div>
     </div>
+    
   );
 }
 
@@ -23,7 +30,6 @@ function History(props) {
 
   return (
     <div className="transaction-history">
-      
       {transactions?.map((transaction) => (
         <HistoryCard
           key={transaction._id}
