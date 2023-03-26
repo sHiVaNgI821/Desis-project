@@ -66,7 +66,12 @@ function BarGraph({data}) {
       <BarChart  width={440} height={200} data={data}>
         <Bar dataKey="amount" name={months[data?._id]} fill="#7B2CBF" />
         <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey= "_id" label={months[data?.id]}/>
+        <XAxis dataKey= "_id" 
+        label={{
+          value: months[data?._id],
+          position: "insideBottomRight",
+          offset: 0,
+        }}/>
         <YAxis />
         <Tooltip />
       </BarChart>
