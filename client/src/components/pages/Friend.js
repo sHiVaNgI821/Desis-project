@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './css/Friend.css';
-import {format} from 'date-fns';
+import {format, differenceInCalendarDays} from 'date-fns';
 
 const Friend = ({ friend }) => {
   let status = '';
@@ -11,6 +11,13 @@ const Friend = ({ friend }) => {
   } else {
     status = 'Settled';
   }
+  function getAmount(amount, interest, date, dueDate) {
+    const diff = differenceInCalendarDays(new Date(dueDate), new Date(date));
+    const num_months = diff / 30.0;
+    const amt = (amount * Math.pow(1 + interest / 100.0, num_months))
+    return amt.toFixed(2);
+  }
+  
   const [friendData, setFriendData] = useState(friend);
   async function settle(ev, trans_Id){
     ev.preventDefault();
@@ -49,7 +56,7 @@ const Friend = ({ friend }) => {
               <p className='friend-text'>{doc.interest}%</p>
               <p className='friend-text'>{format(new Date(doc.date), 'dd/MM/yyyy')}</p>
               <p className='friend-text'>{format(new Date(doc.dueDate), 'dd/MM/yyyy')}</p>
-              <p className='friend-text'>{doc.amount}</p>
+              <p className='friend-text'>{getAmount(doc.amount)}</p>
               {
                 (doc?.status === "pending"? <p><button className='settle-button' onClick={(ev)=>settle(ev, doc.trans_id)}>Settle</button></p>:<p>Settled</p>)
               }

@@ -8,8 +8,8 @@ import {format, differenceInCalendarDays} from 'date-fns';
 function getAmount(amount, interest, date, dueDate) {
   const diff = differenceInCalendarDays(new Date(dueDate), new Date(date));
   const num_months = diff / 30.0;
-  const amt = amount * Math.pow(1 + interest / 100.0, num_months);
-  return amt;
+  const amt = (amount * Math.pow(1 + interest / 100.0, num_months))
+  return amt.toFixed(2);
 }
 
 

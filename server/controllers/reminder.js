@@ -32,7 +32,7 @@ module.exports = {
 		jwt.verify(token, secret, {}, async (err, info) => {
 			if (err) throw err;
 			const date_now = fns.add(new Date(), {days: -15});
-			const end = fns.add(date_now, {days: 15});
+			const end = fns.add(new Date(), {days: 15});
 			const user = await User.findOne({ username: info.username });
 			const lend_transactions = await reminder.aggregate([
 				{

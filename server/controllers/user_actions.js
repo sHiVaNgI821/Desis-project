@@ -163,7 +163,8 @@ module.exports = {
 				{
 					$match: {
 						to: user._id,
-						dueDate: {$gte : date_now, $lte: month_end}
+						dueDate: {$gte : date_now, $lte: month_end},
+						status: "pending",
 					},
 				},
 				{

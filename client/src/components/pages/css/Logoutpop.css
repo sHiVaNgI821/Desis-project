@@ -5,6 +5,7 @@
   transform: translate(-50%, -50%);
   border: 1px solid #9D4EDD;
   padding: 20px;
+  background-color: white;
 }
   
 .logout-popup button {

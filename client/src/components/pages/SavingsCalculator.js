@@ -39,7 +39,7 @@ const SavingsCalculator = () => {
 
   const calculateTime = (ev) => {
     ev.preventDefault();
-    const time = (Math.sqrt((800*targetAmount)/(interestRate3*monthlySaving)) - 1)/2;
+    const time = (Math.sqrt(1 + (800*targetAmount)/(interestRate3*monthlySaving3)) - 1)/24;
     setTime3(Math.ceil(time));
   
   }
